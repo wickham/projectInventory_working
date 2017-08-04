@@ -11,6 +11,16 @@
 import csv
 import os
 
+# For debugging purposes
+# set True, all data will be shown;
+# set False, program runs as expected
+#################
+
+VERBOSE = False
+
+#################
+
+
 os.chdir(os.getcwd()+'/results')
 ifile = open('iPhone Parts-Table 1.csv', "rb")
 reader = csv.reader(ifile)
@@ -21,13 +31,6 @@ req = 1
 stock = 3
 parts = []
 
-#
-# For debugging purposes
-# set True, all data will be shown;
-# set False, program runs as expected
-#
-
-VERBOSE = True
 
 #
 # Data structure
