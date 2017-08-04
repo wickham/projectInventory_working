@@ -142,7 +142,9 @@ ifile.close()
 
 
 if VERBOSE is True:
-    print ("\nDEBUG MODE \n")
+    print ("\n==============")
+    print ("||DEBUG MODE||")
+    print ("==============\n")
     need = head
     need = need.next
     while need != None:
@@ -157,9 +159,9 @@ if VERBOSE is True:
 need = head
 need = need.next
 print("\n         +++ NEEDS INVESTIGATION +++ \n")
-print("================================================")
-print("   PART #     ||    STOCK      ||     REQUEST   ")
-print("================================================\n")
+print("================================================= ")
+print("| PART #     ||    STOCK      ||     REQUEST    |")
+print("================================================= ")
 
 # If stock is GOOD and request is NEED TO ORDER ||
 #     GOOD and request is ORDER PLACED          ||
