@@ -1,0 +1,13 @@
+Part Number,Order Request,Quantity Ordered,Current stock,Units Per Part Order,Device,Description,,Barcode
+123-4567,,,Good,200,iPhone 5,This is a description iPhone 5,,*123-4567*
+123-8910,,,Low,200,iPhone 6,This is a description iPhone 6,,*123-8910*
+456-1234,,,Out of stock,200,Mac,This is a description iPhone 8,,*456-1234*
+456-5678,Need to order,,Good,200,GR,This is a description GR,,*456-5678*
+111-1111,Need to order,,Low,0,,,,*111-1111*
+222-2222,Need to order,,Out of stock,,,,,*222-2222*
+333-3333,Order placed,,Low,,,,,*333-3333*
+444-4444,Order placed,,Out of stock,,,,,*444-4444*
+555-5555,Order placed,,Good,,,,,*555-5555*
+666-6666,Received,,Good,,,,,*666-6666*
+777-7777,Received,,Low,,,,,*777-7777*
+888-8888,Received,,Out of stock,,,,,*888-8888*
