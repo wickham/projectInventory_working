@@ -167,10 +167,10 @@ print("================================================= ")
 print("| PART #     ||     STOCK     ||     REQUEST    |")
 print("================================================= ")
 while need != None:
-    if((need.request=="Need to order" or need.request == "") and (need.stock == "Low" or need.stock == "Out of stock")):
+    if((need.stock == "Out of stock" and (need.request =="Need to order" or need.request =="")) or (need.stock == "Low" and (need.request=="Need to order" or need.request==""))):
         print ("%s      %s      %s      \n" % (need.getPart().ljust(12),need.getStock().upper().ljust(12),need.getRequest().upper().ljust(13) ))
         need = need.next
-    need = need.next
+    elif need != None: need = need.next
 print("+++++++++++++++++++++++++++++++++++++++++++++++++\n\n\n ")
 #
 #       NEEDING ATTENTION
@@ -191,7 +191,7 @@ while need != None:
     if((need.request=="Need to order" and need.stock == "Good") or (need.request == "Order placed" and need.stock == "Good")):
         print ("%s      %s      %s      %s\n" % (need.getPart().ljust(12),need.getStock().upper().ljust(12),need.getRequest().upper().ljust(13), "<===== INVALID REQUEST".ljust(12) ))
         need = need.next
-    need = need.next
+    elif need != None: need = need.next
 print("+++++++++++++++++++++++++++++++++++++++++++++++++\n\n\n ")
 # If stock is
 #while need != None:
