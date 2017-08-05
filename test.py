@@ -77,124 +77,138 @@ class Node:
 #
 #
 
-ofile  = open('ttest.csv', "wb")
-writer = csv.writer(ofile, delimiter="'", quotechar='"', quoting=csv.QUOTE_NONE)
-for row in reader:
-    writer.writerow(row)
-ofile.close()
+def main():
+    ofile  = open('ttest.csv', "wb")
+    writer = csv.writer(ofile, delimiter="'", quotechar='"', quoting=csv.QUOTE_NONE)
+    for row in reader:
+        writer.writerow(row)
+    ofile.close()
 
 
 
-# manipulate .csv file
-# prints out the lines and
-#
-#
-#
-head = Node(0,0,0)
-need = head
-with open('ttest.csv', 'rb') as csvfile:
-    i = 0
-    spamreader = csv.reader(csvfile, delimiter="'", quotechar='|')
-    next(spamreader, None)
-    for row in spamreader:
-        #if ((row[req]=="Need to order") and (row[stock]=="Out of stock") or (row[req]=="Need to order" and row[stock]=="Low")):
-        a = "ORDER"
-        i += 1
-        ppart = row[0]
-        rrequest = row[req]
-        sstock = row[stock]
-        need.next = Node(ppart, sstock, rrequest)
+    # manipulate .csv file
+    # prints out the lines and
+    #
+    #
+    #
+    head = Node(0,0,0)
+    need = head
+    with open('ttest.csv', 'rb') as csvfile:
+        i = 0
+        spamreader = csv.reader(csvfile, delimiter="'", quotechar='|')
+        next(spamreader, None)
+        for row in spamreader:
+            #if ((row[req]=="Need to order") and (row[stock]=="Out of stock") or (row[req]=="Need to order" and row[stock]=="Low")):
+            a = "ORDER"
+            i += 1
+            ppart = row[0]
+            rrequest = row[req]
+            sstock = row[stock]
+            need.next = Node(ppart, sstock, rrequest)
+            need = need.next
+
+
+    	
+
+    	while i >=1:
+    		#print new.get_data()
+    		#new.get_next()
+    		
+    		i-=1
+
+
+    ifile.close()
+
+    # OBJECTIVE
+    # scan csv for logic on slect fields
+    #
+    #               Received =/= Out of stock
+    #               Received == Low
+    #               Received ==
+
+    '''
+        NONE            GOOD
+        NONE            LOW
+        NONE            OUT OF STOCK
+
+        NEED TO ORDER   GOOD
+        NEED TO ORDER   LOW
+        NEED TO ORDER   OUT OF STOCK
+
+        ORDER PLACED    GOOD
+        ORDER PLACED    LOW
+        ORDER PLACED    OUT OF STOCK
+
+        RECEIVED        GOOD
+        RECEIVED        LOW
+        RECEIVED        OUT OF STOCK
+    '''
+
+
+    if VERBOSE is True:
+        print ("\n==============")
+        print ("||DEBUG MODE||")
+        print ("==============\n")
+        need = head
         need = need.next
+        while need != None:
+            print (need.getPart() + need.getStock() + need.getRequest())
+            need = need.next
+        print("\n +PROCESS COMPLETE+ \n")
 
 
-	
+    #
+    #       NEEDS ORDERING
+    #    
 
-	while i >=1:
-		#print new.get_data()
-		#new.get_next()
-		
-		i-=1
-
-
-ifile.close()
-
-# OBJECTIVE
-# scan csv for logic on slect fields
-#
-#               Received =/= Out of stock
-#               Received == Low
-#               Received ==
-
-'''
-    NONE            GOOD
-    NONE            LOW
-    NONE            OUT OF STOCK
-
-    NEED TO ORDER   GOOD
-    NEED TO ORDER   LOW
-    NEED TO ORDER   OUT OF STOCK
-
-    ORDER PLACED    GOOD
-    ORDER PLACED    LOW
-    ORDER PLACED    OUT OF STOCK
-
-    RECEIVED        GOOD
-    RECEIVED        LOW
-    RECEIVED        OUT OF STOCK
-'''
-
-
-if VERBOSE is True:
-    print ("\n==============")
-    print ("||DEBUG MODE||")
-    print ("==============\n")
     need = head
     need = need.next
+    print("\n%32s \n" % ("+++ PLEASE ORDER +++"))
+    print("================================================= ")
+    print("| PART #     ||     STOCK     ||     REQUEST    |")
+    print("================================================= ")
     while need != None:
-        print (need.getPart() + need.getStock() + need.getRequest())
-        need = need.next
-    print("\n +PROCESS COMPLETE+ \n")
+        if((need.stock == "Out of stock" and (need.request =="Need to order" or need.request =="")) or (need.stock == "Low" and (need.request=="Need to order" or need.request==""))):
+            print ("%s      %s      %s      \n" % (need.getPart().ljust(12),need.getStock().upper().ljust(12),need.getRequest().upper().ljust(13) ))
+            need = need.next
+        elif need != None: need = need.next
+    print("+++++++++++++++++++++++++++++++++++++++++++++++++\n\n\n ")
+    #
+    #       NEEDING ATTENTION
+    #
 
+    need = head
+    need = need.next
+    print("\n         +++ NEEDS INVESTIGATION +++ \n")
+    print("================================================= ")
+    print("| PART #     ||     STOCK     ||     REQUEST    |")
+    print("================================================= ")
 
-#
-#       NEEDS ORDERING
-#    
+    # If stock is GOOD and request is NEED TO ORDER ||
+    #     GOOD and request is ORDER PLACED          ||
+    #
 
-need = head
-need = need.next
-print("\n%32s \n" % ("+++ PLEASE ORDER +++"))
-print("================================================= ")
-print("| PART #     ||     STOCK     ||     REQUEST    |")
-print("================================================= ")
-while need != None:
-    if((need.stock == "Out of stock" and (need.request =="Need to order" or need.request =="")) or (need.stock == "Low" and (need.request=="Need to order" or need.request==""))):
-        print ("%s      %s      %s      \n" % (need.getPart().ljust(12),need.getStock().upper().ljust(12),need.getRequest().upper().ljust(13) ))
-        need = need.next
-    elif need != None: need = need.next
-print("+++++++++++++++++++++++++++++++++++++++++++++++++\n\n\n ")
-#
-#       NEEDING ATTENTION
-#
+    while need != None:
+        if((need.request=="Need to order" and need.stock == "Good") or (need.request == "Order placed" and need.stock == "Good")):
+            print ("%s      %s      %s      %s\n" % (need.getPart().ljust(12),need.getStock().upper().ljust(12),need.getRequest().upper().ljust(13), "<===== INVALID REQUEST".ljust(12) ))
+            need = need.next
+        elif need != None: need = need.next
+    print("+++++++++++++++++++++++++++++++++++++++++++++++++\n\n\n ")
+    return
 
-need = head
-need = need.next
-print("\n         +++ NEEDS INVESTIGATION +++ \n")
-print("================================================= ")
-print("| PART #     ||     STOCK     ||     REQUEST    |")
-print("================================================= ")
+options = {0 : print("0"),
+           1 : print("1"),
+           2 : print("2"),
 
-# If stock is GOOD and request is NEED TO ORDER ||
-#     GOOD and request is ORDER PLACED          ||
-#
+}
 
-while need != None:
-    if((need.request=="Need to order" and need.stock == "Good") or (need.request == "Order placed" and need.stock == "Good")):
-        print ("%s      %s      %s      %s\n" % (need.getPart().ljust(12),need.getStock().upper().ljust(12),need.getRequest().upper().ljust(13), "<===== INVALID REQUEST".ljust(12) ))
-        need = need.next
-    elif need != None: need = need.next
-print("+++++++++++++++++++++++++++++++++++++++++++++++++\n\n\n ")
-# If stock is
-#while need != None:
+print("Would you like to begin?")
+inputVar = raw_input("  Y/N: \n")
+if ((inputVar =='Y') or (inputVar=='y')):
+    main()
+elif inputVar == ('N' or 'n'):
+    print("Exiting Application")
+
 
 
 
