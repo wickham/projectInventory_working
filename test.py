@@ -196,11 +196,7 @@ def main():
     print("+++++++++++++++++++++++++++++++++++++++++++++++++\n\n\n ")
     return
 
-options = {0 : print("0"),
-           1 : print("1"),
-           2 : print("2"),
 
-}
 
 print("Would you like to begin?")
 inputVar = raw_input("  Y/N: \n")
