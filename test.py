@@ -32,6 +32,27 @@ stock = 3
 parts = []
 
 
+def one():
+    orderlist()
+    raw_input("Press any key to continue...\n")
+    main()
+ 
+def two():
+    os.system("clear")
+    print "THIS FEATURE IS NOT YET ENABLED\n"
+    raw_input("Press any key to continue...\n")
+    main()
+ 
+def exit():
+    print "EXITING THE PROGRAM\n"
+
+options = { "1" : one,
+            "2" : two,
+            "exit": exit,
+}
+ 
+
+
 #
 # Data structure
 #
@@ -77,7 +98,7 @@ class Node:
 #
 #
 
-def main():
+def orderlist():
     ofile  = open('ttest.csv', "wb")
     writer = csv.writer(ofile, delimiter="'", quotechar='"', quoting=csv.QUOTE_NONE)
     for row in reader:
@@ -194,16 +215,16 @@ def main():
             need = need.next
         elif need != None: need = need.next
     print("+++++++++++++++++++++++++++++++++++++++++++++++++\n\n\n ")
-    return
 
 
 
-print("Would you like to begin?")
-inputVar = raw_input("  Y/N: \n")
-if ((inputVar =='Y') or (inputVar=='y')):
-    main()
-elif inputVar == ('N' or 'n'):
-    print("Exiting Application")
+def main():
+    os.system("clear")
+    print("Program initialized successfully\n\nSelect on option from the following or type \"EXIT\" to end:\n1) Send order list\n2) Receive parts\n\n")
+    inputVar = raw_input(":: ")
+    options.get(inputVar, lambda : None)()
+
+main()
 
 
 
