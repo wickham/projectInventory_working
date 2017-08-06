@@ -48,12 +48,11 @@ def error():
     raw_input("error. try again.")
     main()
 
-options = { "1" : one,
-            "2" : two,
-            "exit": exit,
-            "EXIT": exit,
-            None : error,
-}
+options =   {   "1" : one,
+                "2" : two,
+                "exit": exit,
+                "EXIT": exit,
+            }
  
 
 
@@ -219,7 +218,11 @@ def main():
     os.system("clear")
     print("Program initialized successfully\n\nSelect on option from the following or type \"EXIT\" to end:\n1) Send order list e-mail\n2) Receive parts\n\n")
     inputVar = raw_input(":: ")
-    options.get(inputVar, lambda : None)()
+    val = options.get(inputVar)
+    if val is None:
+        error()
+    else:
+        val()
    
 
 main()
