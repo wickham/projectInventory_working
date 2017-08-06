@@ -151,7 +151,7 @@ def orderlist():
     #               Received == Low
     #               Received ==
 
-    '''
+    ''' all cases
         NONE            GOOD
         NONE            LOW
         NONE            OUT OF STOCK
