@@ -10,7 +10,7 @@
 
 import csv
 import os
-
+os.chdir(os.getcwd()+'/results')
 # For debugging purposes
 # set True, all data will be shown;
 # set False, program runs as expected
@@ -21,9 +21,7 @@ VERBOSE = False
 #################
 
 
-os.chdir(os.getcwd()+'/results')
-ifile = open('iPhone Parts-Table 1.csv', "rb")
-reader = csv.reader(ifile)
+
 
 # Globals
 a = "===null"
@@ -46,9 +44,15 @@ def two():
 def exit():
     print "EXITING THE PROGRAM\n"
 
+def error():
+    raw_input("error. try again.")
+    main()
+
 options = { "1" : one,
             "2" : two,
             "exit": exit,
+            "EXIT": exit,
+            None : error,
 }
  
 
@@ -99,6 +103,9 @@ class Node:
 #
 
 def orderlist():
+
+    ifile = open('iPhone Parts-Table 1.csv', "rb")
+    reader = csv.reader(ifile)
     ofile  = open('ttest.csv', "wb")
     writer = csv.writer(ofile, delimiter="'", quotechar='"', quoting=csv.QUOTE_NONE)
     for row in reader:
@@ -111,7 +118,7 @@ def orderlist():
     # prints out the lines and
     #
     #
-    #
+
     head = Node(0,0,0)
     need = head
     with open('ttest.csv', 'rb') as csvfile:
@@ -119,7 +126,6 @@ def orderlist():
         spamreader = csv.reader(csvfile, delimiter="'", quotechar='|')
         next(spamreader, None)
         for row in spamreader:
-            #if ((row[req]=="Need to order") and (row[stock]=="Out of stock") or (row[req]=="Need to order" and row[stock]=="Low")):
             a = "ORDER"
             i += 1
             ppart = row[0]
@@ -129,17 +135,8 @@ def orderlist():
             need = need.next
 
 
-    	
-
-    	while i >=1:
-    		#print new.get_data()
-    		#new.get_next()
-    		
-    		i-=1
-
-
     ifile.close()
-
+    
     # OBJECTIVE
     # scan csv for logic on slect fields
     #
@@ -220,12 +217,38 @@ def orderlist():
 
 def main():
     os.system("clear")
-    print("Program initialized successfully\n\nSelect on option from the following or type \"EXIT\" to end:\n1) Send order list\n2) Receive parts\n\n")
+    print("Program initialized successfully\n\nSelect on option from the following or type \"EXIT\" to end:\n1) Send order list e-mail\n2) Receive parts\n\n")
     inputVar = raw_input(":: ")
     options.get(inputVar, lambda : None)()
+   
 
 main()
 
+
+''' Test code
+def opt_a():
+  print("You approach the cottage.")
+
+def opt_b():
+  print("You approach the stables.")
+
+def invalid_opt():
+  print("Invalid choice")
+
+options = {"A":["Approach the house",opt_a], "B":["Approach the stable",opt_b]}
+
+for option in options:
+  print(option+") "+options.get(option)[0])
+
+choise = input("Please make Your choise: ")
+
+val = options.get(choise)
+if val is not None:
+  action = val[1]
+else:
+  action = invalid_opt
+
+action()'''
 
 
 
