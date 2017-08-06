@@ -21,7 +21,9 @@ osascript SpreadsheetExportToCSV.scpt parts.numbers /Users/Allen/Desktop/Current
 echo
 echo
 echo "Okay, you have the controls again"
-echo "Have a nice day!"
+echo "Press any key to initialize program:"
+read -n 1
+python test.py
 echo
 echo "Press any key to exit:"
 read -n 1 -s

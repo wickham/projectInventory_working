@@ -48,11 +48,19 @@ def error():
     raw_input("error. try again.")
     main()
 
+
 options =   {   "1" : one,
                 "2" : two,
                 "exit": exit,
                 "EXIT": exit,
             }
+
+options = { "1" : one,
+            "2" : two,
+            "exit": exit,
+            "EXIT": exit,
+}
+
  
 
 
@@ -223,35 +231,10 @@ def main():
         error()
     else:
         val()
-   
 
 main()
 
 
-''' Test code
-def opt_a():
-  print("You approach the cottage.")
-
-def opt_b():
-  print("You approach the stables.")
-
-def invalid_opt():
-  print("Invalid choice")
-
-options = {"A":["Approach the house",opt_a], "B":["Approach the stable",opt_b]}
-
-for option in options:
-  print(option+") "+options.get(option)[0])
-
-choise = input("Please make Your choise: ")
-
-val = options.get(choise)
-if val is not None:
-  action = val[1]
-else:
-  action = invalid_opt
-
-action()'''
 
 
 
