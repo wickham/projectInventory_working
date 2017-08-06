@@ -10,6 +10,7 @@
 
 import csv
 import os
+import autoEmailer
 os.chdir(os.getcwd()+'/results')
 # For debugging purposes
 # set True, all data will be shown;
