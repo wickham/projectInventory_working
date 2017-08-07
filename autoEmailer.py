@@ -15,7 +15,7 @@ from email.MIMEMultipart import MIMEMultipart
 #----------------------------------------# 
 # 			       Email Script				       #
 #----------------------------------------#
-def send():
+def send(body):
 	fromaddr = "Project Inventory"
 	toaddr = "allen.wickhamiii@gmail.com"
 	msg = MIMEMultipart()
@@ -23,8 +23,8 @@ def send():
 	msg['To'] = toaddr
 	msg['Subject'] = "Order List " + time.strftime("%d/%m/%Y")
 	 
-	body = "This is a test"
-	msg.attach(MIMEText(body, 'plain'))
+	#body = "This is a test"
+	msg.attach(MIMEText(body, 'html'))
 	 
 	server = smtplib.SMTP('smtp.gmail.com', 587)
 	server.starttls()

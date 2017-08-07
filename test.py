@@ -29,6 +29,14 @@ a = "===null"
 req = 1
 stock = 3
 parts = []
+body = ("""\
+        <html>
+            <head></head>
+            <body>
+                <p>
+        """)
+
+reqprint = "<===== INVALID REQUEST"
 
 
 def one():
@@ -193,6 +201,8 @@ def orderlist():
     print("================================================= ")
     print("| PART #     ||     STOCK     ||     REQUEST    |")
     print("================================================= ")
+    #body =  (""" "\n%32s \n" % ("+++ PLEASE ORDER +++)\n" + "================================================= \n" + "| PART #     ||     STOCK     ||     REQUEST    |\n" + "================================================= \n"
+    #        """)
     while need != None:
         if((need.stock == "Out of stock" and (need.request =="Need to order" or need.request =="")) or (need.stock == "Low" and (need.request=="Need to order" or need.request==""))):
             print ("%s      %s      %s      \n" % (need.getPart().ljust(12),need.getStock().upper().ljust(12),need.getRequest().upper().ljust(13) ))
@@ -205,10 +215,14 @@ def orderlist():
 
     need = head
     need = need.next
-    print("\n         +++ NEEDS INVESTIGATION +++ \n")
-    print("================================================= ")
-    print("| PART #     ||     STOCK     ||     REQUEST    |")
-    print("================================================= ")
+    body = str("{:^50}\n".format("<html><head></head><body><h2><center><b>+++ NEEDS INVESTIGATION +++</b></h2><br\>"))
+    body = body + str("=================================================<br> \n")
+    body = body + str("| {:^14}||{:^14}||{:^14}|\n".format("PART #","STOCK","REQUEST<br>"))
+    body = body + str("================================================= \n")
+    print("{:^50}\n".format("+++ NEEDS INVESTIGATION +++"))
+    print("=================================================")
+    print("| {:^14}||{:^14}||{:^14}|".format("PART #","STOCK","REQUEST"))
+    print("=================================================\n")
 
     # If stock is GOOD and request is NEED TO ORDER ||
     #     GOOD and request is ORDER PLACED          ||
@@ -216,10 +230,14 @@ def orderlist():
 
     while need != None:
         if((need.request=="Need to order" and need.stock == "Good") or (need.request == "Order placed" and need.stock == "Good")):
-            print ("%s      %s      %s      %s\n" % (need.getPart().ljust(12),need.getStock().upper().ljust(12),need.getRequest().upper().ljust(13), "<===== INVALID REQUEST".ljust(12) ))
+            body = body + str(" {:<15} {:^15} {:>15} {:>25}\n".format(need.getPart(),need.getStock().upper(),need.getRequest().upper(), "<===== INVALID REQUEST" ))
+            print (" {:<15} {:^15} {:>15} {:>25}\n".format(need.getPart(),need.getStock().upper(),need.getRequest().upper(), "<===== INVALID REQUEST" ))
             need = need.next
         elif need != None: need = need.next
+
+    body = body + str("+++++++++++++++++++++++++++++++++++++++++++++++++\n\n\n ")
     print("+++++++++++++++++++++++++++++++++++++++++++++++++\n\n\n ")
+    autoEmailer.send(body)
 
 
 
@@ -236,7 +254,17 @@ def main():
 main()
 
 
-
+html = """\
+<html>
+  <head></head>
+  <body>
+    <p>Hi!<br>
+       How are you?<br>
+       Here is the <a href="http://www.python.org">link</a> you wanted.
+    </p>
+  </body>
+</html>
+"""
 
 
 
