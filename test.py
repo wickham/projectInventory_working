@@ -212,6 +212,11 @@ def orderlist():
                 text-align: left;
                 padding: 8px;
             }
+
+            tr{
+                background-color: rgb(255,255,255);
+            }
+
             tr.bro {
                 color: rgb(200,20,20);
                 background-color: rgb(255,150,150);
@@ -226,12 +231,14 @@ def orderlist():
             tr.bro:nth-child(even) {
                 background-color: rgb(255,190,190);
             }
+            div.good {background-color:#dddddd; padding:20px; margin: 20px 20px 20px 20px;}
+            div.bad {background-color:rgb(255,190,190); padding:20px; margin: 20px 0px 0px 0px;}
             </style>
             </head>
             <body>
             """)
     body = body + str("""\
-                    <h2><center><b>PLEASE ORDER</b></h2><br />
+                    <div><h2><center><b>PLEASE ORDER</b></h2><br />
                     """)
     body = body + str("""\
                     <table>
@@ -241,13 +248,11 @@ def orderlist():
                             <th>REQUEST</th>
                         </tr></center>
                     """)
-    
-    print("\n%32s \n" % ("+++ PLEASE ORDER +++"))
-    print("================================================= ")
-    print("| PART #     ||     STOCK     ||     REQUEST    |")
-    print("================================================= ")
-    #body =  (""" "\n%32s \n" % ("+++ PLEASE ORDER +++)\n" + "================================================= \n" + "| PART #     ||     STOCK     ||     REQUEST    |\n" + "================================================= \n"
-    #        """)
+    if VERBOSE is True:
+        print("\n%32s \n" % ("+++ PLEASE ORDER +++"))
+        print("================================================= ")
+        print("| PART #     ||     STOCK     ||     REQUEST    |")
+        print("================================================= ")
     while need != None:
         if((need.stock == "Out of stock" and (need.request =="Need to order" or need.request =="")) or (need.stock == "Low" and (need.request=="Need to order" or need.request==""))):
             body = body + str("""\
@@ -257,10 +262,11 @@ def orderlist():
                 <td> {} </td>
             </tr>
                 """).format(need.getPart(),need.getStock(),need.getRequest())
-            print ("%s      %s      %s      \n" % (need.getPart().ljust(12),need.getStock().upper().ljust(12),need.getRequest().upper().ljust(13) ))
+            if VERBOSE is True:
+                print ("%s      %s      %s      \n" % (need.getPart().ljust(12),need.getStock().upper().ljust(12),need.getRequest().upper().ljust(13) ))
             need = need.next
         elif need != None: need = need.next
-    body = body + str("</table>")
+    body = body + str("</table></div>")
     print("+++++++++++++++++++++++++++++++++++++++++++++++++\n\n\n ")
     #
     #       NEEDING ATTENTION
@@ -269,7 +275,7 @@ def orderlist():
     need = head
     need = need.next
     body = body + str("""\
-                <h2><center><br /><b>NEEDS INVESTIGATION</b></h2><br />
+                <div class="bad"><h2><center><b>NEEDS INVESTIGATION</b></h2></div><br />
                                 """)
     body = body + str("""\
                      <table>
@@ -279,10 +285,11 @@ def orderlist():
                             <th>REQUEST</th>
                         </tr>
                     """)
-    print("{:^50}\n".format("+++ NEEDS INVESTIGATION +++"))
-    print("=================================================")
-    print("| {:^14}||{:^14}||{:^14}|".format("PART #","STOCK","REQUEST"))
-    print("=================================================\n")
+    if VERBOSE is True:
+        print("{:^50}\n".format("+++ NEEDS INVESTIGATION +++"))
+        print("=================================================")
+        print("| {:^14}||{:^14}||{:^14}|".format("PART #","STOCK","REQUEST"))
+        print("=================================================\n")
 
     # If stock is GOOD and request is NEED TO ORDER ||
     #     GOOD and request is ORDER PLACED          ||
@@ -299,12 +306,13 @@ def orderlist():
                 <td class="bro"> {} </td>
             </tr>
                 """).format(need.getPart(),need.getStock(),need.getRequest())
-            print (" {:<15} {:^15} {:>15} {:>25}\n".format(need.getPart(),need.getStock().upper(),need.getRequest().upper(), "<===== INVALID REQUEST" ))
+            if VERBOSE is True:
+                print (" {:<15} {:^15} {:>15} {:>25}\n".format(need.getPart(),need.getStock().upper(),need.getRequest().upper(), "<===== INVALID REQUEST" ))
             need = need.next
         elif need != None: need = need.next
 
-    
-    print("+++++++++++++++++++++++++++++++++++++++++++++++++\n\n\n ")
+    if VERBOSE is True:
+        print("+++++++++++++++++++++++++++++++++++++++++++++++++\n\n\n ")
     body = body + str("</table></body></html>")
     autoEmailer.send(body)
 
