@@ -197,6 +197,51 @@ def orderlist():
 
     need = head
     need = need.next
+    body = str("""\
+            <html>
+            <head>
+            <style>
+            table   {
+                font-family: arial, sans-serif;
+                border-collapse: collapse;
+                width: 100%;
+                    }
+
+            td, th {
+                border: 1px solid #dddddd;
+                text-align: left;
+                padding: 8px;
+            }
+            tr.bro {
+                color: rgb(200,20,20);
+                background-color: rgb(255,150,150);
+            }
+            
+            tr:nth-child(even){
+                background-color: #dddddd
+            }
+            td.bro{
+                border: 1px solid rgb(255,150,150);
+            }
+            tr.bro:nth-child(even) {
+                background-color: rgb(255,190,190);
+            }
+            </style>
+            </head>
+            <body>
+            """)
+    body = body + str("""\
+                    <h2><center><b>PLEASE ORDER</b></h2><br />
+                    """)
+    body = body + str("""\
+                    <table>
+                    <center><tr>
+                            <th>PART #</th>
+                            <th>STOCK</th>
+                            <th>REQUEST</th>
+                        </tr></center>
+                    """)
+    
     print("\n%32s \n" % ("+++ PLEASE ORDER +++"))
     print("================================================= ")
     print("| PART #     ||     STOCK     ||     REQUEST    |")
@@ -205,9 +250,17 @@ def orderlist():
     #        """)
     while need != None:
         if((need.stock == "Out of stock" and (need.request =="Need to order" or need.request =="")) or (need.stock == "Low" and (need.request=="Need to order" or need.request==""))):
+            body = body + str("""\
+            <tr>
+                <td> {} </td>
+                <td> {} </td>
+                <td> {} </td>
+            </tr>
+                """).format(need.getPart(),need.getStock(),need.getRequest())
             print ("%s      %s      %s      \n" % (need.getPart().ljust(12),need.getStock().upper().ljust(12),need.getRequest().upper().ljust(13) ))
             need = need.next
         elif need != None: need = need.next
+    body = body + str("</table>")
     print("+++++++++++++++++++++++++++++++++++++++++++++++++\n\n\n ")
     #
     #       NEEDING ATTENTION
@@ -215,10 +268,17 @@ def orderlist():
 
     need = head
     need = need.next
-    body = str("{:^50}\n".format("<html><head></head><body><h2><center><b>+++ NEEDS INVESTIGATION +++</b></h2><br\>"))
-    body = body + str("=================================================<br> \n")
-    body = body + str("| {:^14}||{:^14}||{:^14}|\n".format("PART #","STOCK","REQUEST<br>"))
-    body = body + str("================================================= \n")
+    body = body + str("""\
+                <h2><center><br /><b>NEEDS INVESTIGATION</b></h2><br />
+                                """)
+    body = body + str("""\
+                     <table>
+                        <tr>
+                            <th>PART #</th>
+                            <th>STOCK</th>
+                            <th>REQUEST</th>
+                        </tr>
+                    """)
     print("{:^50}\n".format("+++ NEEDS INVESTIGATION +++"))
     print("=================================================")
     print("| {:^14}||{:^14}||{:^14}|".format("PART #","STOCK","REQUEST"))
@@ -230,13 +290,22 @@ def orderlist():
 
     while need != None:
         if((need.request=="Need to order" and need.stock == "Good") or (need.request == "Order placed" and need.stock == "Good")):
-            body = body + str(" {:<15} {:^15} {:>15} {:>25}\n".format(need.getPart(),need.getStock().upper(),need.getRequest().upper(), "<===== INVALID REQUEST" ))
+            
+
+            body = body + str("""\
+            <tr class="bro">
+                <td class="bro"> {} </td>
+                <td class="bro"> {} </td>
+                <td class="bro"> {} </td>
+            </tr>
+                """).format(need.getPart(),need.getStock(),need.getRequest())
             print (" {:<15} {:^15} {:>15} {:>25}\n".format(need.getPart(),need.getStock().upper(),need.getRequest().upper(), "<===== INVALID REQUEST" ))
             need = need.next
         elif need != None: need = need.next
 
-    body = body + str("+++++++++++++++++++++++++++++++++++++++++++++++++\n\n\n ")
+    
     print("+++++++++++++++++++++++++++++++++++++++++++++++++\n\n\n ")
+    body = body + str("</table></body></html>")
     autoEmailer.send(body)
 
 
