@@ -8,6 +8,6 @@ Part Number'Order Request'Quantity Ordered'Current stock'Units Per Part Order'De
 333-3333'Order placed''Low'''''*333-3333*
 444-4444'Order placed''Out of stock'''''*444-4444*
 555-5555'Order placed''Good'''''*555-5555*
-666-6666'Received''Good'''''*666-6666*
+666-6666'Need to order''Low'''''*666-6666*
 777-7777'Received''Low'''''*777-7777*
 888-8888'Received''Out of stock'''''*888-8888*

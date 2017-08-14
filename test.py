@@ -11,9 +11,10 @@
 import csv
 import os
 import autoEmailer
+import time
 os.chdir(os.getcwd()+'/results')
 # For debugging purposes
-# set True, all data will be shown;
+# set True, all data will be shown and emailer will not execute;
 # set False, program runs as expected
 #################
 
@@ -267,7 +268,9 @@ def orderlist():
             need = need.next
         elif need != None: need = need.next
     body = body + str("</table></div>")
-    print("+++++++++++++++++++++++++++++++++++++++++++++++++\n\n\n ")
+    if VERBOSE is True:
+        print("+++++++++++++++++++++++++++++++++++++++++++++++++\n\n\n ")
+
     #
     #       NEEDING ATTENTION
     #
@@ -313,8 +316,10 @@ def orderlist():
 
     if VERBOSE is True:
         print("+++++++++++++++++++++++++++++++++++++++++++++++++\n\n\n ")
-    body = body + str("</table></body></html>")
-    autoEmailer.send(body)
+        body = body + str("</table></body></html>")
+    else:
+        body = body + str("</table></body></html>")
+        autoEmailer.send(body)
 
 
 

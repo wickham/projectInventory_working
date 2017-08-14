@@ -1,0 +1,87 @@
+<html>
+            <head>
+            <style>
+            table   {
+                font-family: arial, sans-serif;
+                border-collapse: collapse;
+                width: 100%;
+                    }
+            h2{
+                font-family: helvetica, arial, sans-serif;
+            }
+
+            td, th {
+                border: 1px solid #dddddd;
+                text-align: left;
+                padding: 8px;
+            }
+
+            tr{
+                background-color: rgb(255,255,255);
+            }
+
+            tr.bro {
+                color: rgb(200,20,20);
+                background-color: rgb(255,150,150);
+            }
+            
+            tr:nth-child(even){
+                background-color: #dddddd
+            }
+            td.bro{
+                border: 1px solid rgb(255,150,150);
+            }
+            th.dark{
+                background-color: rgb(40,40,40);
+                border-bottom: 1px solid black;
+                color: rgb(255,190,190);
+            }
+            tr.bro:nth-child(even) {
+                background-color: rgb(255,190,190);
+            }
+            div.good {background-color:rgb(90,150,200); padding:20px; padding:20px; margin: 20px 0px 0px 0px;}
+            div.bad {background-color:rgb(255,190,190); border: 1px solid rgb(255,150,150);padding:20px; margin: 20px 0px 0px 0px;}
+            </style>
+            </head>
+            <body>
+            <div class="good"><h2><center><b>PLEASE ORDER</b></h2>
+            <table>
+                    <center>
+                        <tr>
+                            <th>PART #</th>
+                            <th>STOCK</th>
+                            <th>REQUEST</th>
+                        </tr>
+                    </center>
+                        <tr>
+                            <td> 666-6666 </td>
+                            <td> Low </td>
+                            <td> Need to order </td>
+                        </tr>
+                        <tr>
+                            <td> 123-4567 </td>
+                            <td> Low </td>
+                            <td> Need to order </td>
+                        </tr>
+            </table></div>
+            <div class="bad"><h2><center><b>NEEDS INVESTIGATION</b></h2>
+            <table>
+                        <tr>
+                            <th class="dark">PART #</th>
+                            <th class="dark">STOCK</th>
+                            <th class="dark">REQUEST</th>
+                        </tr>
+                        <tr class="bro">
+                            <td class="bro"> 444-4444 </td>
+                            <td class="bro"> Good </td>
+                            <td class="bro"> Need to order </td>
+                        </tr>
+                        <tr class="bro">
+                            <td class="bro"> 567-4444 </td>
+                            <td class="bro"> Good </td>
+                            <td class="bro"> Ordered </td>
+                        </tr>
+            </div>
+            </table>
+            </body>
+</html>
