@@ -1,53 +1,126 @@
+<!DOCTYPE html>
+
 <html>
             <head>
             <style>
-            table   {
+            table {
                 font-family: arial, sans-serif;
                 border-collapse: collapse;
                 width: 100%;
-                    }
+            }
             h2{
                 font-family: helvetica, arial, sans-serif;
+                
             }
 
             td, th {
                 border: 1px solid #dddddd;
                 text-align: left;
                 padding: 8px;
-            }
 
+            }
+            .shadow{box-shadow: 0px 5px 4px rgba(0,0,0, 0.1);}
             tr{
                 background-color: rgb(255,255,255);
             }
-
-            tr.bro {
-                color: rgb(200,20,20);
-                background-color: rgb(255,150,150);
-            }
-            
             tr:nth-child(even){
                 background-color: #dddddd
             }
-            td.bro{
-                border: 1px solid rgb(255,150,150);
-            }
-            th.dark{
-                background-color: rgb(40,40,40);
-                border-bottom: 1px solid black;
-                color: rgb(255,190,190);
+
+            tr.bro {
+                //color: rgb(200,20,20);
+                background-color: rgb(255,150,150);
             }
             tr.bro:nth-child(even) {
-                background-color: rgb(255,190,190);
+                background-color: rgb(255,190,150);
             }
-            div.good {background-color:rgb(90,150,200); padding:20px; padding:20px; margin: 20px 0px 0px 0px;}
-            div.bad {background-color:rgb(255,190,190); border: 1px solid rgb(255,150,150);padding:20px; margin: 20px 0px 0px 0px;}
+            .special { 
+                font-family: Dingbats, Quivira, "Arial Unicode MS", Symbola, " Everson Mono";
+                font-size: 25px;
+                
+                
+            }
+            .special2 { 
+                font-family: Dingbats, Quivira, "Arial Unicode MS", Symbola, " Everson Mono";
+                font-size: 25px;
+                text-shadow: 0.05em 0.05em black;
+                
+            }
+            .special1 { 
+                font-family: Dingbats, Quivira, "Arial Unicode MS", Symbola, " Everson Mono";
+                font-size: 12px;
+                text-shadow: 0.1em 0.1em black;
+                
+            }
+            .bro{
+                color: rgb(200,0,0);
+                text-shadow: 1px 1px black;
+                //border: 1px solid rgb(255,150,150);
+                //text-decoration: line-through;
+                //text-decoration-color: red;
+            }
+            td.blank{
+                background-color: rgb(75,75,75);
+            }
+            td.good, td.received {
+                background-color: rgba(156,225,89, 0.7);
+            }
+            
+            td.out, td.need {
+                background-color: rgba(255,95,94, 0.7);
+            }
+            
+            td.low, td.order {
+                background-color: rgba(255,254,97, 0.7);
+            }
+            
+            th.dark, tr.dark{
+                background-color: rgb(40,40,40);
+                border-bottom: 1px solid black;
+                color: rgb(255,255,255);
+
+            }
+            th.red, tr.red{
+                background-color: rgb(40,40,40);
+                border-bottom: 1px solid black;
+                color: rgb(255,255,255);
+
+            }
+            
+            div.good {
+                background-color:rgba(90,150,200,0.7); 
+                padding:25px;
+                margin: 20px 0px 0px 0px; 
+                text-align: right;
+                border-radius: 25px;
+                box-shadow: -5px 5px 4px #aaa,
+                            5px 0px 4px #aaa;
+
+            }
+            div.bad {
+                background-color:rgb(255,190,190); 
+                border: 1px solid rgb(255,150,150);
+                padding-top: 1px;
+                padding-bottom: 25px; 
+                margin-top: 20px;
+                margin: 20px 0px 0px 0px; 
+                border-radius: 25px;
+
+            }
+            .white{background-color: rgb(255,255,255);
+                padding-top: 1px;
+                padding-bottom: 0px; 
+                margin-top: 20px;
+                border-radius: 25px;
+                }
             </style>
             </head>
             <body>
-            <div class="good"><h2><center><b>PLEASE ORDER</b></h2>
-            <table>
+            <div class="good"><span class="special">&#xF8FF</span>
+            <div class="white"><h2><center><b>PLEASE ORDER</b></h2>
+            <table class="shadow">
                     <center>
-                        <tr>
+                        <tr class="dark">
                             <th>PART #</th>
                             <th>STOCK</th>
                             <th>REQUEST</th>
@@ -55,33 +128,40 @@
                     </center>
                         <tr>
                             <td> 666-6666 </td>
-                            <td> Low </td>
-                            <td> Need to order </td>
+                            <td class="low"> Low </td>
+                            <td class="need"> Need to order </td>
+                            
                         </tr>
                         <tr>
                             <td> 123-4567 </td>
-                            <td> Low </td>
-                            <td> Need to order </td>
+                            <td class="low">Low </td>
+                            <td class="need"> Need to order </td>
+                        </tr>
+                        <tr>
+                            <td>987-6543</td>
+                            <td class="out"> Out of stock</td>
+                            <td class="blank"></td>
                         </tr>
             </table></div>
-            <div class="bad"><h2><center><b>NEEDS INVESTIGATION</b></h2>
-            <table>
+            <div class="white"><h2><center><b><span class="special2">&#10071</span><span class="bro">NEEDS INVESTIGATION</span><span class="special2">&#10071</span></b></h2>
+            <table class="shadow">
                         <tr>
-                            <th class="dark">PART #</th>
-                            <th class="dark">STOCK</th>
-                            <th class="dark">REQUEST</th>
+                            <th class="red">PART #</th>
+                            <th class="red">STOCK</th>
+                            <th class="red">REQUEST</th>
                         </tr>
-                        <tr class="bro">
-                            <td class="bro"> 444-4444 </td>
-                            <td class="bro"> Good </td>
-                            <td class="bro"> Need to order </td>
+                        <tr>
+                            <td><span class="special1">&#10071</span><span class="bro"> 444-4444 </span></td>
+                            <td class="good"> Good </td>
+                            <td class="need"> Need to order </td>
                         </tr>
-                        <tr class="bro">
-                            <td class="bro"> 567-4444 </td>
-                            <td class="bro"> Good </td>
-                            <td class="bro"> Ordered </td>
+                        <tr>
+                            <td><span class="special1">&#10071</span><span class="bro"> 567-4444 </td>
+                            <td class="good"> Good </td>
+                            <td class="order"> Ordered </td>
                         </tr>
             </div>
             </table>
+            </div>
             </body>
 </html>

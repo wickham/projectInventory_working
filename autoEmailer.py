@@ -13,7 +13,7 @@ from email.MIMEMultipart import MIMEMultipart
 
 
 #----------------------------------------# 
-# 			       Email Script				       #
+# 			       Email Script			 #
 #----------------------------------------#
 def send(body):
 	fromaddr = "Project Inventory"
