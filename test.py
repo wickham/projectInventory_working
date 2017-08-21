@@ -325,7 +325,7 @@ def orderlist():
 
 def main():
     os.system("clear")
-    print("Program initialized successfully\n\nSelect on option from the following or type \"EXIT\" to end:\n1) Send order list e-mail\n2) Receive parts\n\n")
+    print("Program initialized successfully\n\nSelect an option from the following or type \"EXIT\" to end:\n1) Send order list e-mail\n2) Receive parts\n\n")
     inputVar = raw_input(":: ")
     val = options.get(inputVar)
     if val is None:

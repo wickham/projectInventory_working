@@ -1,12 +1,12 @@
 Part Number'Order Request'Quantity Ordered'Current stock'Units Per Part Order'Device'Description''Barcode
-123-4567'''Good'200'iPhone 5'This is a description iPhone 5''*123-4567*
+123-4567'''Out of stock'200'iPhone 5'This is a description iPhone 5''*123-4567*
 123-8910'''Good'200'iPhone 6'This is a description iPhone 6''*123-8910*
 456-1234'''Good'200'Mac'This is a description iPhone 8''*456-1234*
 456-5678'Received''Good'200'GR'This is a description GR''*456-5678*
-111-1111'''Good'0''''*111-1111*
+111-1111'Need to order''Good'0''''*111-1111*
 222-2222'Received''Good'''''*222-2222*
 333-3333'''Good'''''*333-3333*
-444-4444'''Low'''''*444-4444*
+444-4444'Need to order''Low'''''*444-4444*
 555-5555'''Good'''''*555-5555*
 666-6666'''Good'''''*666-6666*
 777-7777'''Good'''''*777-7777*
