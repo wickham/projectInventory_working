@@ -15,8 +15,12 @@
 
             h2{
                 font-family: helvetica, arial, sans-serif;
-                color: white;
+                color: black;
                 
+            }
+            h1{
+                font-family: helvetica, arial, sans-serif;
+                color: white;
             }
 
             td, th {
@@ -26,14 +30,7 @@
 
             }
 
-            .shadow{
-            	box-shadow: 0px 5px 4px rgba(0,0,0, 0.1);
-            	padding: 20px;
-            	margin: 20px 0px 0px 0px;
-            	min-width: 40%
-
-
-            }
+            
 
             tr{
                 background-color: rgb(255,255,255);
@@ -83,8 +80,17 @@
                 //text-decoration-color: red;
             }
 
+            .shadow{
+                box-shadow: 0px 5px 4px rgba(0,0,0, 0.1);
+                padding: 20px;
+                margin: 20px 0px 0px 0px;
+                min-width: 40%
+
+
+            }
+
             td.blank{
-                background-color: rgb(75,75,75);
+                //background-color: rgba(255,255,255,0.6);
             }
 
             td.good, td.received {
@@ -113,7 +119,7 @@
 
             }
             div.head{
-            	background: rgba(0,0,0,0.5);
+            	background: rgba(255,255,255,.6);
             }
 
             div.good {
@@ -140,6 +146,11 @@
                 border-radius: 25px;
 
             }
+            .center{
+                text-align: center;
+                font-family: helvetica, arial, sans-serif;
+                color: white;
+            }
             
             .black{
                 background-color: rgba(40,40,40,0.5);
@@ -147,7 +158,7 @@
 
             }
             
-            .white{background-color: rgba(0,0,0,0);
+            .white{background-color: rgba(255,255,255,0);
                 padding-top: 10px;
                 padding-bottom: 25px;
                 padding-right: 10px;
@@ -160,10 +171,11 @@
             </style>
             </head>
             <body>
-            <div class="good"><span class="special">&#xF000</span>
-            <div class="black">
-            <div class="white head"><h2><center><b>PLEASE ORDER</b></h2>
-            <table class="shadow">
+            <div class="good">
+                <span class="special">&#xF000</span><div class="center"></div>
+                <div class="black">
+                <div class="white head"><h2><center><b>PLEASE ORDER</b></h2>
+                    <table class="shadow">
                     <center>
                         <tr class="dark">
                             <th>PART #</th>
@@ -187,27 +199,37 @@
                             <td class="out"> Out of stock</td>
                             <td class="blank"></td>
                         </tr>
-            </table></div>
-            <div class="white"><h2><center><b><span class="special2">&#10071</span><span>NEEDS INVESTIGATION</span><span class="special2">&#10071</span></b></h2>
-            <table class="shadow">
                         <tr>
+                            <td>6737-129812</td>
+                            <td class="low">Low</td>
+                            <td class="blank"></td>
+                    </table>
+                </div>
+                </div>
+                <div class="black">
+                <div class="white head"><h2><center><b><span class="special2">&#10071</span><span>NEEDS INVESTIGATION</span><span class="special2">&#10071</span></b></h2>
+                    <table class="shadow">
+                        <center>
+                        <tr class="dark">
                             <th class="red">PART #</th>
                             <th class="red">STOCK</th>
                             <th class="red">REQUEST</th>
                         </tr>
+                        </center>
                         <tr>
-                            <td><span class="special1">&#10071</span><span class="bro"> 444-4444 </span></td>
+                            <td><span class="special1">&#10071</span>444-4444</td>
                             <td class="good"> Good </td>
                             <td class="need"> Need to order </td>
                         </tr>
                         <tr>
-                            <td><span class="special1">&#10071</span><span class="bro"> 567-4444 </td>
+                            <td><span class="special1">&#10071</span>567-4444 </td>
                             <td class="good"> Good </td>
                             <td class="order"> Ordered </td>
                         </tr>
-            </div>
-            </table>
-            </div>
+            
+                    </table>
+                </div>
+                </div>
             </div>
             </body>
 </html>
