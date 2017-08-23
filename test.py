@@ -98,7 +98,7 @@ html = """\
             }
 
             tr.bro {
-                //color: rgb(200,20,20);
+                
                 background-color: rgb(255,150,150);
             }
 
@@ -387,19 +387,43 @@ def orderlist():
         print("| PART #     ||     STOCK     ||     REQUEST    |")
         print("================================================= ")
     while need != None:
-        if((need.stock == "Out of stock" and (need.request =="Need to order" or need.request =="")) or (need.stock == "Low" and (need.request=="Need to order" or need.request==""))):
+        if(need.stock == "Out of stock" and need.request =="Need to order"):
             body = body + str("""\
             <tr>
                 <td> {} </td>
+                <td class="out"> {} </td>
+                <td class="need"> {} </td>
+            </tr>
+                """).format(need.getPart(),need.getStock(),need.getRequest())
+        elif(need.stock == "Out of stock" and need.request ==""):
+            body = body + str("""\
+            <tr>
                 <td> {} </td>
+                <td class="out"> {} </td>
+                <td class="blank"> {} </td>
+            </tr>
+                """).format(need.getPart(),need.getStock(),need.getRequest())
+        elif(need.stock == "Low" and need.request=="Need to order"):
+            body = body + str("""\
+            <tr>
                 <td> {} </td>
+                <td class="low"> {} </td>
+                <td class="need"> {} </td>
+            </tr>
+                """).format(need.getPart(),need.getStock(),need.getRequest()) 
+        elif(need.stock == "Low" and need.request==""):
+            body = body + str("""\
+            <tr>
+                <td> {} </td>
+                <td class="low"> {} </td>
+                <td class="blank"> {} </td>
             </tr>
                 """).format(need.getPart(),need.getStock(),need.getRequest())
             if VERBOSE is True:
                 print ("%s      %s      %s      \n" % (need.getPart().ljust(12),need.getStock().upper().ljust(12),need.getRequest().upper().ljust(13) ))
             need = need.next
         elif need != None: need = need.next
-    body = body + str("</table></div>")
+    body = body + str("</table></div></div>")
     if VERBOSE is True:
         print("+++++++++++++++++++++++++++++++++++++++++++++++++\n\n\n ")
 
