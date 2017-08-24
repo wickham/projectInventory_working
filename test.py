@@ -13,20 +13,30 @@ import os
 import autoEmailer
 import time
 os.chdir(os.getcwd()+'/results')
-# For debugging purposes
-# set True, all data will be shown and emailer will not execute;
-# set False, program runs as expected
-#################
 
-VERBOSE = False
+#####################################################################
+# For debugging purposes                                            #
+# set True, all data will be shown and emailer will not execute;    #
+# set False, program runs as expected                               #
+#####################################################################
+VERBOSE = True
 
-##################
+#####################################################################
+# Numbers Spreadsheet Table Names                                   #
+# To add tables to the program, add the name of the export CSV      #
+# here into the variable name                                       #
+# EX: export_file = ["parts-1.csv","my-files.csv","NULL"]           #                                                                    #
+#####################################################################
 
-  #############
-  # HTML Code #
-  #############
+export_file = ["iPhone Parts-Table 1.csv", "iPhone Repair Tools-Table 1.csv", "NULL"]
 
-#################
+######################################################################################
+
+#############
+# HTML Code #
+#############
+
+
 
 html = """\
 
@@ -94,7 +104,7 @@ html = """\
             }
 
             tr:nth-child(even) {
-                background-color: #dddddd
+                background-color: #dddddd;
             }
 
             tr.bro {
@@ -132,10 +142,17 @@ html = """\
                 border-radius: 25px;
 
             }
+            .fixed {
+                min-width: 5em;
+            }
+
             .special { 
                 font-family: "Baskerville Old Face",Dingbats, Quivira, "Arial Unicode MS", Symbola, " Everson Mono";
                 font-size: 50px;
-                color: white;    
+                color: white;
+                text-overflow: clip;
+                overflow: hidden;
+                width: 4em;    
             }
 
             .special1 { 
@@ -162,11 +179,13 @@ html = """\
                 box-shadow: 0px 5px 4px rgba(0,0,0, 0.1);
                 padding: 20px;
                 margin: 20px 0px 0px 0px;
-                min-width: 40%
+                min-width: 40%;
 
 
             }
-
+            .hidden {
+            font-size: 0px;
+            }
             .center {
                 text-align: center;
                 font-family: helvetica, arial, sans-serif;
@@ -195,9 +214,10 @@ html = """\
             <body>
 
 """
-
+######################################################################################
 
 # Globals #
+
 a = "===null"
 req = 1
 stock = 3
@@ -229,12 +249,6 @@ options =   {   "1" : one,
                 "exit": exit,
                 "EXIT": exit,
             }
-
-options = { "1" : one,
-            "2" : two,
-            "exit": exit,
-            "EXIT": exit,
-}
 
  
 
@@ -285,22 +299,23 @@ class Node:
 #
 
 def orderlist():
+    j = 0
+    while export_file[j] != "NULL":
+        ifile = open(export_file[j], "rb")
+        reader = csv.reader(ifile)
+        ofile  = open('ttest.csv', "wb")
+        writer = csv.writer(ofile, delimiter="'", quotechar='"', quoting=csv.QUOTE_NONE)
+        for row in reader:
+            writer.writerow(row)
+        ofile.close()
+        j+=1
 
-    ifile = open('iPhone Parts-Table 1.csv', "rb")
-    reader = csv.reader(ifile)
-    ofile  = open('ttest.csv', "wb")
-    writer = csv.writer(ofile, delimiter="'", quotechar='"', quoting=csv.QUOTE_NONE)
-    for row in reader:
-        writer.writerow(row)
-    ofile.close()
 
-
-
-    # manipulate .csv file
-    # prints out the lines and
-    #
-    #
-    
+        # manipulate .csv file
+        # prints out the lines and
+        #
+        #
+        
 
     head = Node(0,0,0)
     need = head
@@ -318,8 +333,9 @@ def orderlist():
             need = need.next
 
 
+        
+      
     ifile.close()
-    
     ''' OBJECTIVE
       scan csv for logic on slect fields
     
@@ -366,7 +382,9 @@ def orderlist():
     need = need.next
     body = html
     body = body + str("""\
-                <div class="good">
+            <div class="good">
+                <span class="hidden">APPLE CONFIDENTIAL --- Order Request --- Please proceed with ordering the following below. 
+                Needs Investigation should be inspected an validate correct status.</span>
                 <span class="special">&#xF000</span><div class="center"></div>
                 <div class="black">
                 <div class="white head"><h2><center><b>PLEASE ORDER</b></h2>
@@ -375,9 +393,9 @@ def orderlist():
                     <table class="shadow">
                     <center>
                         <tr class="dark">
-                            <th>PART #</th>
-                            <th>STOCK</th>
-                            <th>REQUEST</th>
+                            <th class"fixed">PART #</th>
+                            <th class"fixed">STOCK</th>
+                            <th class"fixed">REQUEST</th>
                         </tr>
                     </center>
                     """)
@@ -395,6 +413,9 @@ def orderlist():
                 <td class="need"> {} </td>
             </tr>
                 """).format(need.getPart(),need.getStock(),need.getRequest())
+            if VERBOSE is True:
+                print ("%s      %s      %s      \n" % (need.getPart().ljust(12),need.getStock().upper().ljust(12),need.getRequest().upper().ljust(13) ))
+            need = need.next
         elif(need.stock == "Out of stock" and need.request ==""):
             body = body + str("""\
             <tr>
@@ -403,6 +424,9 @@ def orderlist():
                 <td class="blank"> {} </td>
             </tr>
                 """).format(need.getPart(),need.getStock(),need.getRequest())
+            if VERBOSE is True:
+                print ("%s      %s      %s      \n" % (need.getPart().ljust(12),need.getStock().upper().ljust(12),need.getRequest().upper().ljust(13) ))
+            need = need.next
         elif(need.stock == "Low" and need.request=="Need to order"):
             body = body + str("""\
             <tr>
@@ -410,7 +434,10 @@ def orderlist():
                 <td class="low"> {} </td>
                 <td class="need"> {} </td>
             </tr>
-                """).format(need.getPart(),need.getStock(),need.getRequest()) 
+                """).format(need.getPart(),need.getStock(),need.getRequest())
+            if VERBOSE is True:
+                print ("%s      %s      %s      \n" % (need.getPart().ljust(12),need.getStock().upper().ljust(12),need.getRequest().upper().ljust(13) ))
+            need = need.next 
         elif(need.stock == "Low" and need.request==""):
             body = body + str("""\
             <tr>
@@ -434,15 +461,18 @@ def orderlist():
     need = head
     need = need.next
     body = body + str("""\
-                <div class="bad"><h2><center><b>NEEDS INVESTIGATION</b></h2></div><br />
+                <div class="black">
+                <div class="white head"><h2><center><b><span class="special2">&#10071</span><span>NEEDS INVESTIGATION</span><span class="special2">&#10071</span></b></h2>
                                 """)
     body = body + str("""\
-                     <table>
-                        <tr>
-                            <th>PART #</th>
-                            <th>STOCK</th>
-                            <th>REQUEST</th>
+                     <table class="shadow">
+                        <center>
+                        <tr class="dark">
+                            <th class="red fixed">PART #</th>
+                            <th class="red fixed">STOCK</th>
+                            <th class="red fixed">REQUEST</th>
                         </tr>
+                        </center>
                     """)
     if VERBOSE is True:
         print("{:^50}\n".format("+++ NEEDS INVESTIGATION +++"))
@@ -455,16 +485,27 @@ def orderlist():
     #
 
     while need != None:
-        if((need.request=="Need to order" and need.stock == "Good") or (need.request == "Order placed" and need.stock == "Good")):
-            
-
+        if(need.request=="Need to order" and need.stock == "Good"):
             body = body + str("""\
-            <tr class="bro">
-                <td class="bro"> {} </td>
-                <td class="bro"> {} </td>
-                <td class="bro"> {} </td>
+            <tr>
+                <td><span class="special1">&#10071</span>{}</td>
+                <td class="good"> {} </td>
+                <td class="need"> {} </td>
             </tr>
                 """).format(need.getPart(),need.getStock(),need.getRequest())
+            if VERBOSE is True:
+                print (" {:<15} {:^15} {:>15} {:>25}\n".format(need.getPart(),need.getStock().upper(),need.getRequest().upper(), "<===== INVALID REQUEST" ))
+            need = need.next
+        elif(need.request == "Order placed" and need.stock == "Good"):
+            body = body + str("""\
+            <tr>
+                <td><span class="special1">&#10071</span> {} </td>
+                <td class="good"> {} </td>
+                <td class="order"> {} </td>
+            </tr>
+                """).format(need.getPart(),need.getStock(),need.getRequest())
+
+            
             if VERBOSE is True:
                 print (" {:<15} {:^15} {:>15} {:>25}\n".format(need.getPart(),need.getStock().upper(),need.getRequest().upper(), "<===== INVALID REQUEST" ))
             need = need.next
@@ -472,9 +513,9 @@ def orderlist():
 
     if VERBOSE is True:
         print("+++++++++++++++++++++++++++++++++++++++++++++++++\n\n\n ")
-        body = body + str("</table></body></html>")
+        body = body + str("</table></div></div></div></body></html>")
     else:
-        body = body + str("</table></body></html>")
+        body = body + str("</table></div></div></div></body></html>")
         autoEmailer.send(body)
 
 
