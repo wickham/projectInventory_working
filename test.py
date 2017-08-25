@@ -19,7 +19,7 @@ os.chdir(os.getcwd()+'/results')
 # set True, all data will be shown and emailer will not execute;    #
 # set False, program runs as expected                               #
 #####################################################################
-VERBOSE = True
+VERBOSE = False
 
 #####################################################################
 # Numbers Spreadsheet Table Names                                   #
@@ -300,22 +300,20 @@ class Node:
 
 def orderlist():
     j = 0
+    ofile  = open('ttest.csv', "wb")
     while export_file[j] != "NULL":
         ifile = open(export_file[j], "rb")
         reader = csv.reader(ifile)
-        ofile  = open('ttest.csv', "wb")
         writer = csv.writer(ofile, delimiter="'", quotechar='"', quoting=csv.QUOTE_NONE)
         for row in reader:
             writer.writerow(row)
-        ofile.close()
         j+=1
-
-
+    
         # manipulate .csv file
         # prints out the lines and
         #
         #
-        
+    ofile.close()    
 
     head = Node(0,0,0)
     need = head
@@ -332,10 +330,11 @@ def orderlist():
             need.next = Node(ppart, sstock, rrequest)
             need = need.next
 
+    ifile.close()
 
         
       
-    ifile.close()
+    
     ''' OBJECTIVE
       scan csv for logic on slect fields
     

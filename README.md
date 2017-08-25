@@ -11,8 +11,8 @@ Debugger: FINISHED
 Program: INPROGRESS
 
 *E-mailer:
-DONE			-CSS Formatted with HTML source code
-IN PROGRESS		-Add new files by adding to "export_file" (multiple files)
-NEED			-Track order age
+[DONE]			-CSS Formatted with HTML source code
+[DONE]			-Add new files by adding to "export_file" (multiple files)
+[NEED]			-Track order age
 
 *Receive Parts: NOT ENABLED
