@@ -19,7 +19,7 @@ os.chdir(os.getcwd()+'/results')
 # set True, all data will be shown and emailer will not execute;    #
 # set False, program runs as expected                               #
 #####################################################################
-VERBOSE = False
+VERBOSE = True
 
 #####################################################################
 # Numbers Spreadsheet Table Names                                   #
@@ -219,9 +219,9 @@ html = """\
 # Globals #
 
 a = "===null"
-req = 1
-stock = 3
-parts = []
+#req = 1
+#stock = 3
+#parts = []
 reqprint = "<===== INVALID REQUEST"
 
 
@@ -322,10 +322,18 @@ def orderlist():
         spamreader = csv.reader(csvfile, delimiter="'", quotechar='|')
         next(spamreader, None)
         for row in spamreader:
-            a = "ORDER"
-            i += 1
-            ppart = row[0]
-            rrequest = row[req]
+            for pos in range(len(row)):
+                if (row[pos] == ("Part Number" or "PART NUMBER" or "Part number" or "part number")): 
+                    part = pos
+                    
+                elif (row[pos] == ("Order Request" or "ORDER REQUEST" or "order request" or "Order request")): 
+                    request = pos
+                    
+                elif (row[pos] == ("Current Stock" or "CURRENT STOCK" or "Current stock" or "current stock")): 
+                    stock = pos
+                    
+            ppart = row[part]
+            rrequest = row[request]
             sstock = row[stock]
             need.next = Node(ppart, sstock, rrequest)
             need = need.next
