@@ -219,9 +219,9 @@ html = """\
 # Globals #
 
 a = "===null"
-#req = 1
-#stock = 3
-#parts = []
+request = 1
+stock = 3
+parts = []
 reqprint = "<===== INVALID REQUEST"
 
 
@@ -243,6 +243,20 @@ def error():
     raw_input("error. try again.")
     main()
 
+def branch(header):
+    for pos in range(len(row)):
+        print("{}".format(row[pos]))
+        if (row[pos] == "Part Number"): 
+            part = row[pos]
+            print("{}".format(row[pos]))
+                    
+        elif (row[pos] == ("Order Request" or "ORDER REQUEST" or "order request" or "Order request")): 
+            request = row[pos]
+            print("{}".format(request))
+                    
+        elif (row[pos] == ("Current Stock" or "CURRENT STOCK" or "Current stock" or "current stock")): 
+            stock = pos
+            print("{}".format(stock))
 
 options =   {   "1" : one,
                 "2" : two,
@@ -322,21 +336,18 @@ def orderlist():
         spamreader = csv.reader(csvfile, delimiter="'", quotechar='|')
         next(spamreader, None)
         for row in spamreader:
-            for pos in range(len(row)):
-                if (row[pos] == ("Part Number" or "PART NUMBER" or "Part number" or "part number")): 
-                    part = pos
-                    
-                elif (row[pos] == ("Order Request" or "ORDER REQUEST" or "order request" or "Order request")): 
-                    request = pos
-                    
-                elif (row[pos] == ("Current Stock" or "CURRENT STOCK" or "Current stock" or "current stock")): 
-                    stock = pos
-                    
-            ppart = row[part]
+            
+            a = "ORDER"
+            i += 1
+            ppart = row[0]
             rrequest = row[request]
+
+            #ppart = row[part]
+            #rrequest = row[request]
             sstock = row[stock]
             need.next = Node(ppart, sstock, rrequest)
             need = need.next
+            print("{}, {}, {}".format(need.getPart(), need.getStock(), need.getRequest()))
 
     ifile.close()
 
