@@ -219,9 +219,9 @@ html = """\
 # Globals #
 
 a = "===null"
-request = 1
-stock = 3
-parts = []
+#request = 1
+#stock = 3
+#parts = []
 reqprint = "<===== INVALID REQUEST"
 
 
@@ -314,45 +314,63 @@ class Node:
 
 def orderlist():
     j = 0
+    head = Node(0,0,0)
+    head1 = Node(0,0,0)
+    need = head
     ofile  = open('ttest.csv', "wb")
     while export_file[j] != "NULL":
         ifile = open(export_file[j], "rb")
         reader = csv.reader(ifile)
         writer = csv.writer(ofile, delimiter="'", quotechar='"', quoting=csv.QUOTE_NONE)
+        header = next(reader)
+        print("{}".format(header))
+
+        i = 0
+        while i < len(header):
+            
+            if(header[i]==("Part Number")):
+                part = i
+                print("{} --- {}".format(header[i],i))
+            elif(header[i]==("Order Request")):
+                request = i
+                print("{} --- {}".format(header[i], i))
+            elif(header[i]==("Current stock")):
+                stock = i
+                print("{} --- {}".format(header[i], i))
+            i+=1
         for row in reader:
             writer.writerow(row)
         j+=1
     
-        # manipulate .csv file
-        # prints out the lines and
-        #
-        #
     ofile.close()    
 
-    head = Node(0,0,0)
-    need = head
+# manipulate .csv file
+# prints out the lines and
+#
+#
     with open('ttest.csv', 'rb') as csvfile:
-        i = 0
         spamreader = csv.reader(csvfile, delimiter="'", quotechar='|')
-        next(spamreader, None)
-        for row in spamreader:
-            
-            a = "ORDER"
-            i += 1
-            ppart = row[0]
+        for row in spamreader:   
+            #a = "ORDER"
+            ppart = row[part]
             rrequest = row[request]
-
-            #ppart = row[part]
-            #rrequest = row[request]
             sstock = row[stock]
+            
+
+            #ppart = row[0]
+            #rrequest = row[request]
+            #sstock = row[stock]
             need.next = Node(ppart, sstock, rrequest)
             need = need.next
-            print("{}, {}, {}".format(need.getPart(), need.getStock(), need.getRequest()))
 
     ifile.close()
 
-        
+#   !! TEST HEADERS BEFORE TAKING INPUT !!
+#
+#
       
+
+
     
     ''' OBJECTIVE
       scan csv for logic on slect fields
