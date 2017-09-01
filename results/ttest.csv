@@ -1,0 +1,49 @@
+iPhone Parts-Table 1.csv
+Part Number'Order Request'Quantity Ordered'Current stock'Units Per Part Order'Device'Description''Barcode
+123-4567'Need to order''Good'200'iPhone 5'This is a description iPhone 5''*123-4567*
+123-8910'Need to order''Low'200'iPhone 6'This is a description iPhone 6''*123-8910*
+456-1234'Need to order''Out of stock'200'Mac'This is a description iPhone 8''*456-1234*
+456-5678'Order placed''Good'200'GR'This is a description GR''*456-5678*
+111-1111'Order placed''Low'0''''*111-1111*
+222-2222'Order placed''Out of stock'''''*222-2222*
+333-3333'Received''Good'''''*333-3333*
+444-4444'Received''Low'''''*444-4444*
+555-5555'Received''Out of stock'''''*555-5555*
+666-6666'''Good'''''*666-6666*
+777-7777'''Low'''''*777-7777*
+888-8888'''Good'''''*888-8888*
+NULL'1
+iPhone Repair Tools-Table 1.csv
+Part Number''Order Request'Current stock'Quantity Ordered'Units Per Part Order'Device'Description'Barcode'Photo
+099-2132''Need to order'Good''1'''*099-2132*'
+098-34253''Need to order'Low''1'''*098-34253*'
+3452-34232''Need to order'Out of stock''1'''*3452-34232*'
+444444-4444''Order placed'Good''1'''*444444-4444*'
+43525-3242''Order placed'Low''1'''*43525-3242*'
+5465-2232''Order placed'Out of stock''1'''*5465-2232*'
+988945-32322''Received'Good''1'''*988945-32322*'
+34254-32422''Received'Low''1'''*34254-32422*'
+342-43523245''Received'Out of stock''1'''*342-43523245*'
+322-3241'''Good''1'''*322-3241*'
+53252-2341'''Low''4'''*53252-2341*'
+4333-33333'''Good''24'''*4333-33333*'
+1111-1111111''Need to order'Good''96'''*1111-1111111*'
+3213-333''Need to order'Low''10'''*3213-333*'
+55-55''Need to order'Out of stock''1'''*55-55*'
+66-66''Order placed'Good''1'''*66-66*'
+77-77''Order placed'Low''1'''*77-77*'
+88-88''Order placed'Out of stock''5'''*88-88*'
+99-99''Received'Good''10'''*99-99*'
+00-00''Received'Low''10'''*00-00*'
+11-11''Received'Out of stock''1'''*11-11*'
+22-22'''Good''1'''*22-22*'
+33-33'''Low''1'''*33-33*'
+44-44'''Low''1'''*44-44*'
+555-555''Need to order'Good''1'''*555-555*'
+666-666''Need to order'Low''1'''*666-666*'
+777-777''Need to order'Out of stock''1'''*777-777*'
+888-888''Order placed'Good''1'''*888-888*'
+999-999''Order placed'Low''1'''*999-999*'
+1010-1010''Order placed'Out of stock''1'''*1010-1010*'
+110-111''Received'Good''1'''*110-111*'
+NULL'2

@@ -218,11 +218,6 @@ html = """\
 
 # Globals #
 
-a = "===null"
-#request = 1
-#stock = 3
-#parts = []
-reqprint = "<===== INVALID REQUEST"
 
 
 def one():
@@ -244,19 +239,31 @@ def error():
     main()
 
 def branch(header):
-    for pos in range(len(row)):
-        print("{}".format(row[pos]))
-        if (row[pos] == "Part Number"): 
-            part = row[pos]
-            print("{}".format(row[pos]))
-                    
-        elif (row[pos] == ("Order Request" or "ORDER REQUEST" or "order request" or "Order request")): 
-            request = row[pos]
-            print("{}".format(request))
-                    
-        elif (row[pos] == ("Current Stock" or "CURRENT STOCK" or "Current stock" or "current stock")): 
-            stock = pos
-            print("{}".format(stock))
+    i=0
+    while i < len(header):    
+        if(header[i]==("Part Number")):
+            part = i
+            print("{} --- {}".format(header[i],i))
+        elif(header[i]==("Order Request")):
+            request = i
+            print("{} --- {}".format(header[i], i))
+        elif(header[i]==("Current stock")):
+            stock = i
+            print("{} --- {}".format(header[i], i))
+        i+=1
+        #print("branch function --- {}".format(i))
+    return part, request, stock
+
+def tab_end(spamreader):
+    row = next(spamreader)
+    print(row)
+    if [0] == "NULL":
+        tab = next(spamreader)
+        print(tab)
+        header = next(spamreader)
+        print(header)
+
+        return(branch(header))
 
 options =   {   "1" : one,
                 "2" : two,
@@ -298,9 +305,9 @@ class Node:
     def setNext(self,newnext):
         self.next = newnext
 
-#
-# Print function for printing beautiful tables
-#
+##                                            ##
+# Print function for printing beautiful tables #
+##                                            ##  
 
 
 
@@ -313,34 +320,36 @@ class Node:
 #
 
 def orderlist():
+    # declarations
+    #
+    #
+
+    a = "===null"
+    reqprint = "<===== INVALID REQUEST"
+    tab =['']
     j = 0
     head = Node(0,0,0)
-    head1 = Node(0,0,0)
     need = head
     ofile  = open('ttest.csv', "wb")
     while export_file[j] != "NULL":
+        tab[0] = str(export_file[j])
         ifile = open(export_file[j], "rb")
         reader = csv.reader(ifile)
         writer = csv.writer(ofile, delimiter="'", quotechar='"', quoting=csv.QUOTE_NONE)
         header = next(reader)
-        print("{}".format(header))
 
-        i = 0
-        while i < len(header):
-            
-            if(header[i]==("Part Number")):
-                part = i
-                print("{} --- {}".format(header[i],i))
-            elif(header[i]==("Order Request")):
-                request = i
-                print("{} --- {}".format(header[i], i))
-            elif(header[i]==("Current stock")):
-                stock = i
-                print("{} --- {}".format(header[i], i))
-            i+=1
+        writer.writerow(tab)
+        #print(tab)
+        writer.writerow(header)
+        #print(header)
         for row in reader:
+            #print(row)
             writer.writerow(row)
         j+=1
+        end = ["NULL"]
+        end.append(j)
+        writer.writerow(end)
+        #print(end)
     
     ofile.close()    
 
@@ -350,16 +359,19 @@ def orderlist():
 #
     with open('ttest.csv', 'rb') as csvfile:
         spamreader = csv.reader(csvfile, delimiter="'", quotechar='|')
-        for row in spamreader:   
-            #a = "ORDER"
+        tab = next(spamreader)
+        print(tab)
+        header = next(spamreader)
+        print(header)
+
+        part, request, stock = branch(header)
+        for row in spamreader:
+            part, request, stock = tab_end(spamreader)
+           
             ppart = row[part]
+            print(ppart)
             rrequest = row[request]
             sstock = row[stock]
-            
-
-            #ppart = row[0]
-            #rrequest = row[request]
-            #sstock = row[stock]
             need.next = Node(ppart, sstock, rrequest)
             need = need.next
 
