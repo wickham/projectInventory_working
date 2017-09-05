@@ -8,11 +8,14 @@ Debugger: FINISHED
 -Verbose mode is a tool used to display all data being imported by the writer
 -Text is padded to display symmetrically and can be changed (default is 13 characters)
 
-Program: INPROGRESS
+*Program:
+[WORK IN PROGRESS]		-Adjust how Table titles search and index (dont reference 
+						arrays, search by title name)
+[NEED]					-Track order age
 
 *E-mailer:
-[DONE]			-CSS Formatted with HTML source code
-[DONE]			-Add new files by adding to "export_file" (multiple files)
-[NEED]			-Track order age
+[DONE]					-CSS Formatted with HTML source code
+[DONE]					-Add new files by adding to "export_file" (multiple files)
+
 
 *Receive Parts: NOT ENABLED

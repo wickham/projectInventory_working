@@ -238,7 +238,7 @@ def error():
     raw_input("error. try again.")
     main()
 
-def branch(header):
+'''def branch(header):
     i=0
     while i < len(header):    
         if(header[i]==("Part Number")):
@@ -250,20 +250,23 @@ def branch(header):
         elif(header[i]==("Current stock")):
             stock = i
             print("{} --- {}".format(header[i], i))
+        
         i+=1
         #print("branch function --- {}".format(i))
     return part, request, stock
+'''
 
-def tab_end(spamreader):
+'''def tab_end(spamreader):
     row = next(spamreader)
     print(row)
-    if [0] == "NULL":
+    if row[0] == "NULL":
         tab = next(spamreader)
         print(tab)
         header = next(spamreader)
         print(header)
 
         return(branch(header))
+'''
 
 options =   {   "1" : one,
                 "2" : two,
@@ -364,16 +367,76 @@ def orderlist():
         header = next(spamreader)
         print(header)
 
-        part, request, stock = branch(header)
+        #part, request, stock = branch(header)
+        #
+        #
+        #GATHER NODE POS
+        i=0
+        while i < len(header):    
+            if(header[i]==("Part Number")):
+                part = i
+                print("{} --- {}".format(header[i],i))
+            elif(header[i]==("Order Request")):
+                request = i
+                print("{} --- {}".format(header[i], i))
+            elif(header[i]==("Current stock")):
+                stock = i
+                print("{} --- {}".format(header[i], i))
+            
+            i+=1
+
+        #
+        #
+        #TEST IF ALL HEADERS EXIST
+        if stock and request and part != None: print("HEADERS EXSIST\n")
+        else: print("ERROR READING HEADERS\n\nPlease make sure the headers are formatted correctly and try again...\nEXITING")
+
+        #print("branch function --- {}".format(i))
         for row in spamreader:
-            part, request, stock = tab_end(spamreader)
+           
+            print(row)
+
+            #
+            #
+            # TEST NULL ROW
+            if(row[0] == "NULL"):
+                tab = next(spamreader, None)
+                if(tab== None):
+                    print("STOP")
+                    break
+                #tab = next(spamreader)
+                print("TAB --- \n{}".format(tab) )
+                header = next(spamreader)
+                print("HEADER --- \n{}".format(header) )
+                #print(header)
+                i=0
+                while i < len(header):    
+                    if(header[i]==("Part Number")):
+                        part = i
+                        print("{} --- {}".format(header[i],i))
+                    elif(header[i]==("Order Request")):
+                        request = i
+                        print("{} --- {}".format(header[i], i))
+                    elif(header[i]==("Current stock")):
+                        stock = i
+                        print("{} --- {}".format(header[i], i))
+                    
+                    i+=1
+                row=next(spamreader)
+                print(row)
+                
+
+            #part, request, stock = tab_end(row)
            
             ppart = row[part]
-            print(ppart)
+            #print(ppart)
             rrequest = row[request]
             sstock = row[stock]
+
+
             need.next = Node(ppart, sstock, rrequest)
             need = need.next
+            print("NEW NODE\n")
 
     ifile.close()
 
