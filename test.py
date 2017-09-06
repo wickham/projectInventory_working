@@ -238,7 +238,10 @@ def error():
     raw_input("error. try again.")
     main()
 
-'''def branch(header):
+def headerTest(header):
+    #
+    #
+    #GATHER NODE POS
     i=0
     while i < len(header):    
         if(header[i]==("Part Number")):
@@ -252,9 +255,16 @@ def error():
             print("{} --- {}".format(header[i], i))
         
         i+=1
-        #print("branch function --- {}".format(i))
-    return part, request, stock
-'''
+    #
+    #
+    #TEST IF ALL HEADERS EXIST
+    if stock and request and part != None:
+        print("HEADERS EXSIST\n")
+        return part, request, stock
+    else:
+        print("ERROR READING HEADERS\n\nPlease make sure the headers are formatted correctly and try again...\nEXITING")
+        return None
+
 
 '''def tab_end(spamreader):
     row = next(spamreader)
