@@ -23,7 +23,7 @@ echo
 echo "Okay, you have the controls again"
 echo "Press any key to initialize program:"
 read -n 1
-python test.py
+python projectTory.py
 echo
 echo "Press any key to exit:"
 read -n 1 -s

@@ -14,6 +14,9 @@ import autoEmailer
 import style
 import sys
 
+#############################
+#   CSV Result Directory    #
+#############################
 
 os.chdir(os.getcwd()+'/results')
 
