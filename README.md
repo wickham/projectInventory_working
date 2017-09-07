@@ -9,7 +9,7 @@ Debugger: FINISHED
 -Text is padded to display symmetrically and can be changed (default is 13 characters)
 
 *Program:
-[WORK IN PROGRESS]		-Adjust how Table titles search and index (dont reference 
+[DONE]					-Adjust how Table titles search and index (dont reference 
 						arrays, search by title name)
 [NEED]					-Track order age
 

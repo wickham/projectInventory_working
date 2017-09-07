@@ -1,3 +1,13 @@
+'''
+    This program is for open source use
+    Designed by Allen Wickham
+    Q3 2017
+    Project info @
+    www.allenwickham.me
+    Contact:
+    allenwickhamiii@gmail.com
+'''
+
 def html(): 
     html = """\
 

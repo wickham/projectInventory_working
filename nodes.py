@@ -1,3 +1,12 @@
+'''
+    This program is for open source use
+    Designed by Allen Wickham
+    Q3 2017
+    Project info @
+    www.allenwickham.me
+    Contact:
+    allenwickhamiii@gmail.com
+'''
 import csv
 import os
 import time
@@ -14,7 +23,7 @@ os.chdir(os.getcwd()+'/results')
 # set False, program runs as expected                               #
 #####################################################################
 
-VERBOSE = True
+VERBOSE = False
 
 #############
 # HTML Code #
@@ -22,10 +31,13 @@ VERBOSE = True
 
 html = style.html()
 
+#############################
+#                           #
+# TEST IF ALL HEADERS EXIST #
+#                           #
+#############################
+
 def headerTest(header):
-    #
-    #
-    #GATHER NODE POS
     i=0
     while i < len(header):    
         if(header[i].lower()==("part number")):
@@ -37,8 +49,8 @@ def headerTest(header):
         elif(header[i].lower()==("current stock")):
             stock = i
             if VERBOSE is True:print("{} --- {}".format(header[i], i))
-        
         i+=1
+
     try: part
     except NameError: 
         sys.exit("ERROR READING TABLE HEADERS\n\nPlease make sure the headers are formatted correctly and try again...\nEXITING")   
@@ -48,17 +60,15 @@ def headerTest(header):
     try: stock
     except NameError: 
         sys.exit("ERROR READING TABLE HEADERS\n\nPlease make sure the headers are formatted correctly and try again...\nEXITING")
-    #print("{} {} {}".format(part, request, stock))
-    #
-    #
-    #TEST IF ALL HEADERS EXIST
 
     if VERBOSE is True: print("HEADERS EXSIST\n")
     return part, request, stock
 
-#
-# Data structure
-#
+##############################
+#                            #
+#       Data structure       #
+#                            #
+##############################
 
 class Node:
     def __init__(self,ppart, sstock, rrequest):
@@ -87,25 +97,17 @@ class Node:
     def setNext(self,newnext):
         self.next = newnext
 
-##                                            ##
-# Print function for printing beautiful tables #
-##                                            ##  
+ 
 
 
-
-##########################################
-
-
-
-# writes new .csv file with quotes instead of commas 	!! my testing purposes !!
-#
-#
+######################################################
+#                                                    #
+# writes new .csv file with quotes instead of commas #	
+# !! my testing purposes !!                          #
+#                                                    #
+######################################################
 
 def orderlists(export_file):
-    # declarations
-    #
-    #
-
     a = "===null"
     reqprint = "<===== INVALID REQUEST"
     tab =['']
@@ -121,24 +123,22 @@ def orderlists(export_file):
         header = next(reader)
 
         writer.writerow(tab)
-        #print(tab)
         writer.writerow(header)
-        #print(header)
         for row in reader:
-            #print(row)
             writer.writerow(row)
         j+=1
         end = ["NULL"]
         end.append(j)
         writer.writerow(end)
-        #print(end)
+      
     
-    ofile.close()    
+    ofile.close()  
 
-    # manipulate .csv file
-    # prints out the lines and
-    #
-    #
+
+    ############################
+    # manipulate .csv file     #
+    # prints out the lines and #
+    ############################
 
     with open('ttest.csv', 'rb') as csvfile:
         spamreader = csv.reader(csvfile, delimiter="'", quotechar='|')
@@ -150,17 +150,17 @@ def orderlists(export_file):
         header = next(spamreader)
         if VERBOSE is True:print("TAB --- {}\nHEADER --- {}".format(tab, header))
 
-        #
-        #GATHER NODE POS
-        #
+        ###################
+        # GATHER NODE POS #
+        ###################
 
         part, request, stock = headerTest(header)
         for row in spamreader:
 
             
-            #
-            # TEST NULL ROW
-            #
+            #################
+            # TEST NULL ROW #
+            #################
 
             if(row[0] == "NULL"):
                 tab = next(spamreader, None)
@@ -170,7 +170,6 @@ def orderlists(export_file):
 
                 header = next(spamreader)
                 if VERBOSE is True:print("TAB --- {}\nHEADER --- {}".format(tab, header))
-                #print(header)
                 part, request, stock = headerTest(header)
                 row=next(spamreader)
            
@@ -183,13 +182,6 @@ def orderlists(export_file):
             need = need.next
 
     ifile.close()
-
-    #   !! TEST HEADERS BEFORE TAKING INPUT !!
-    #
-    #
-      
-
-
     
     ''' OBJECTIVE
       scan csv for logic on slect fields
@@ -216,7 +208,11 @@ def orderlists(export_file):
         RECEIVED        OUT OF STOCK
     '''
 
-
+################################################
+#                                              #
+# Print function for printing beautiful tables #
+#                                              #
+################################################ 
     if VERBOSE is True:
         need = head
         need = need.next

@@ -21,18 +21,16 @@ from nodes import orderlists
     
 
 #####################################################################
-# Numbers Spreadsheet Table Names                                   #
+# Numbers Spreadsheet Table Names,                                  #
 # To add tables to the program, add the name of the export CSV      #
-# here into the variable name                                       #
-# EX: export_file = ["parts-1.csv","my-files.csv","NULL"]           #                                                                    #
+#   here into the variable name "export_file"                       #
+# EX:                                                               #
+#       export_file = ["my-file1.csv","my-file2.csv","NULL"]        #                                                                    #
 #####################################################################
 
 export_file = ["iPhone Parts-Table 1.csv", "iPhone Repair Tools-Table 1.csv", "NULL"]
 
 ######################################################################################
-
-
-
 
 ######################################################################################
 
@@ -64,10 +62,8 @@ options =   {   "1" : one,
                 "EXIT": exit,
             }
 
- 
 
-
-
+######################################################################################
 
 
 def main():

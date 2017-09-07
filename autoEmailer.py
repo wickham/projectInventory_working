@@ -1,3 +1,12 @@
+'''
+    This program is for open source use
+    Designed by Allen Wickham
+    Q3 2017
+    Project info @
+    www.allenwickham.me
+    Contact:
+    allenwickhamiii@gmail.com
+'''
 
 # This is a program used to import an excel spreadsheet; test cases; and send an automated email
 # regarding the results
@@ -13,9 +22,10 @@ from email.MIMEMultipart import MIMEMultipart
 
 
 #----------------------------------------# 
-# 			       Email Script			 #
+# 			   Email Script				 #
 #----------------------------------------#
 def send(body):
+	print("Sending Email...")
 	fromaddr = "Project Inventory"
 	toaddr = "allen.wickhamiii@gmail.com"
 	msg = MIMEMultipart()
@@ -32,3 +42,4 @@ def send(body):
 	text = msg.as_string()
 	server.sendmail(fromaddr, toaddr, text)
 	server.quit()
+	print("Email: SENT!\n")
