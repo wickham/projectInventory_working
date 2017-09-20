@@ -14,11 +14,7 @@ import autoEmailer
 import style
 import sys
 
-#############################
-#   CSV Result Directory    #
-#############################
 
-os.chdir(os.getcwd()+'/results')
 
 #####################################################################
 # For debugging purposes                                            #
@@ -26,7 +22,7 @@ os.chdir(os.getcwd()+'/results')
 # set False, program runs as expected                               #
 #####################################################################
 
-VERBOSE = False
+VERBOSE = True
 
 #############
 # HTML Code #
@@ -110,7 +106,14 @@ class Node:
 #                                                    #
 ######################################################
 
-def orderlists(export_file):
+def orderlists(export_file,dir):
+    #############################
+    #   CSV Result Directory    #
+    #############################
+    old_dir = os.getcwd()
+    os.chdir(dir)
+
+
     a = "===null"
     reqprint = "<===== INVALID REQUEST"
     tab =['']
@@ -368,3 +371,6 @@ def orderlists(export_file):
     else:
         body = body + str("</table></div></div></div></body></html>")
         autoEmailer.send(body)
+
+    os.chdir(old_dir)
+

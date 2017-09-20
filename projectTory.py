@@ -13,6 +13,7 @@ import os
 import autoEmailer
 import time
 import sys
+import subprocess
 
 import nodes
 from nodes import orderlists
@@ -25,10 +26,20 @@ from nodes import orderlists
 # To add tables to the program, add the name of the export CSV      #
 #   here into the variable name "export_file"                       #
 # EX:                                                               #
-#       export_file = ["my-file1.csv","my-file2.csv","NULL"]        #                                                                    #
+#       export_file = ["my-file1.csv","my-file2.csv","NULL"]        #                                                                    
 #####################################################################
+def config():
+    export_file = ["iPhone Parts-Table 1.csv", "iPhone Repair Tools-Table 1.csv", "NULL"]
+    diR = "/Users/Allen/Desktop/Current Work/CODE/projectInventory_working/results"
+    return (export_file, diR)
 
-export_file = ["iPhone Parts-Table 1.csv", "iPhone Repair Tools-Table 1.csv", "NULL"]
+def automator():
+    #os.system("/Users/Allen/Desktop/Current\ Work/CODE/projectInventory_working/SpreadsheetExportToCSV.scpt")
+    os.chdir("/Users/Allen/Desktop/Current Work/CODE/projectInventory_working")
+    wkdir=os.getcwd()
+    print(wkdir)
+    subprocess.call(["cd","/Users/Allen/Desktop/Current Work/CODE/projectInventory_working"])
+    subprocess.call(["osascript","SpreadsheetExportToCSV.scpt", "/Users/Allen/Desktop/Current Work/CODE/projectInventory_working/templates/parts.numbers","/Users/Allen/Desktop/Current Work/CODE/projectInventory_working/results"])
 
 ######################################################################################
 
@@ -37,7 +48,9 @@ export_file = ["iPhone Parts-Table 1.csv", "iPhone Repair Tools-Table 1.csv", "N
 
 
 def one():
-    orderlists(export_file)
+    export_file, results_dir = config()
+    orderlists(export_file, results_dir)
+    print(os.getcwd())
     #raw_input("Press any key to continue...\n")
     #main()
  
