@@ -22,7 +22,7 @@ import sys
 # set False, program runs as expected                               #
 #####################################################################
 
-VERBOSE = True
+VERBOSE = False
 
 #############
 # HTML Code #
