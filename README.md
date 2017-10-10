@@ -9,17 +9,22 @@ Debugger: FINISHED
 -Text is padded to display symmetrically and can be changed (default is 13 characters)
 
 *Program:
-[DONE]					-Adjust how Table titles search and index (dont 
-							reference arrays, search by title name)
+[DONE]					-Adjust how Table titles search and index 
+							(dont reference arrays, search by title name)
+
 [NEED]					-Track order age
 
 *E-mailer:
 [DONE]					-CSS Formatted with HTML source code
-[DONE]					-Add new files by adding to "export_file" (multiple files)
+[DONE]					-Add new files by adding to "export_file" 
+							(multiple files)
+
+[NEEDS]					-Encrypt password to protect user info (using 
+							hashing bcrypt salts)
 
 
 *Receive Parts: 
-NOT ENABLED
+[NOT ENABLED]
 
 
 *GUI Design:

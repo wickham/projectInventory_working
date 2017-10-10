@@ -14,12 +14,19 @@ import autoEmailer
 import time
 import sys
 import subprocess
+import shelve
 
 import nodes
 from nodes import orderlists
 
 
-    
+#####################################################################
+#   Variables                                                       #
+#   Database    =  "database"                                       #
+#   Results     = config[i, diR]                                    #
+#   CSV Files   = congig[export_file, j]                            #
+#   Automator   = automator()                                       #
+#####################################################################
 
 #####################################################################
 # Numbers Spreadsheet Table Names,                                  #
@@ -29,17 +36,19 @@ from nodes import orderlists
 #       export_file = ["my-file1.csv","my-file2.csv","NULL"]        #                                                                    
 #####################################################################
 def config():
+    export_file = shelve.open("mydata")
+
     export_file = ["iPhone Parts-Table 1.csv", "iPhone Repair Tools-Table 1.csv", "NULL"]
-    diR = "/Users/Allen/Desktop/Current Work/CODE/projectInventory_working/results"
+    diR = "/Users/Allen/Current Work/CODE/projectInventory_working/results"
     return (export_file, diR)
 
 def automator():
     #os.system("/Users/Allen/Desktop/Current\ Work/CODE/projectInventory_working/SpreadsheetExportToCSV.scpt")
-    os.chdir("/Users/Allen/Desktop/Current Work/CODE/projectInventory_working")
+    os.chdir("/Users/Allen/Current Work/CODE/projectInventory_working")
     wkdir=os.getcwd()
     print(wkdir)
-    subprocess.call(["cd","/Users/Allen/Desktop/Current Work/CODE/projectInventory_working"])
-    subprocess.call(["osascript","SpreadsheetExportToCSV.scpt", "/Users/Allen/Desktop/Current Work/CODE/projectInventory_working/templates/parts.numbers","/Users/Allen/Desktop/Current Work/CODE/projectInventory_working/results"])
+    subprocess.call(["cd","/Users/Allen/Current Work/CODE/projectInventory_working"])
+    subprocess.call(["osascript","SpreadsheetExportToCSV.scpt", "/Users/Allen/Current Work/CODE/projectInventory_working/templates/parts.numbers","/Users/Allen/Current Work/CODE/projectInventory_working/results"])
 
 ######################################################################################
 
@@ -56,7 +65,13 @@ def one():
  
 def two():
     os.system("clear")
-    print "THIS FEATURE IS NOT YET ENABLED\n"
+    storedData = shelve.open("two")
+    #path = "/Users/Allen/Desktop/Current Work/CODE/projectInventory_working"
+    storedData["path"] = os.getcwd()
+    #storedData["path"]=raw_input("Type the stuff:  ")
+    print(storedData["path"])
+    storedData.close()
+    #print "THIS FEATURE IS NOT YET ENABLED\n"
     #raw_input("Press any key to continue...\n")
     #main()
  
@@ -69,6 +84,58 @@ def error():
     print("error. try again.")
 
 
+def setDatabase(diR, name):
+    print(name)
+    numbers = shelve.open(name)
+    if (len(numbers) == 0):
+        print("VARIABLE IS NOT INITIALIZED\nInitializing...")
+        numbers["path"] = diR
+    if (len(diR)<=0):
+        print (numbers["path"] + "Cancel")
+    elif (diR == numbers["path"]):
+        print(numbers["path"] + "OLD")
+    else:
+        numbers["path"] = diR
+        print(numbers["path"] + "NEW")
+    numbers.close()
+    return
+
+
+class Folder:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
+    def set(self,diR, name):
+        print("\n")
+        storedData = shelve.open(name)
+        if (len(storedData) == 0):
+            print("VARIABLE IS NOT INITIALIZED\nInitializing...")
+            storedData["path"] = diR
+        if (len(diR)<=0):
+            print (storedData["path"] + "    Cancel")
+            
+
+        elif (diR == storedData["path"]):
+            print(storedData["path"] + "    OLD")
+        else:
+            storedData["path"] = diR
+            print(storedData["path"] + "    NEW")
+        storedData.close()
+        return
+
+    def get(self, name):
+        print("\n")
+        storedData = shelve.open(name)
+        if (len(storedData) == 0):
+            print("VARIABLE IS NOT INITIALIZED\n")
+        else:
+            print("{}".format(storedData["path"] + "    GET"))
+        storedData.close()
+        return storedData
+
+
+
 
 options =   {   "1" : one,
                 "2" : two,
@@ -78,6 +145,8 @@ options =   {   "1" : one,
 
 
 ######################################################################################
+
+
 
 
 '''def main():

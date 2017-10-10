@@ -3,7 +3,7 @@ import os
 import tkMessageBox
 from Tkinter import *
 from projectTory import *
-from tkFileDialog import askopenfilename
+import tkFileDialog
 
 
 
@@ -14,18 +14,37 @@ def email(event):
 	tkMessageBox.showinfo("Alert", "E-mail Sent!")
 
 
-def receive(event):
-	#two()
+def csvExport(event):
+    #two()
     automator()
-    tkMessageBox.showinfo("Error", "This feature is not yet enabled.")
+    tkMessageBox.showinfo("Complete", "Export Completed!")
 
-def open_file():
-    filePath = askopenfilename(filetypes = (("Numbers Documents","*.numbers"), ("All Files","*.*")))
-    print(filePath)
-    return filePath
+
+class set_dir:
+    def __init__(self):
+        return    
+    #@staticmethod
+    def root(self):
+        curdir = os.getcwd()
+        filePath = tkFileDialog.askdirectory(parent = root, initialdir = curdir, title = "Select Directory")
+        folder = Folder(filePath)
+        folder.set(filePath, "root")      
+    #@staticmethod
+    def results(self):
+        curdir = os.getcwd()
+        filePath = tkFileDialog.askdirectory(parent = root, initialdir = curdir, title = "Select Directory")
+        folder = Folder(filePath)
+        folder.set(filePath, "results")
+
+        
+
 
 def handle_file():
     filePath = open_file()
+
+def browse():
+    filePath = tkFileDialog.askopenfilename(filetypes = (("Numbers Documents","*.numbers"), ("All Files","*.*")))
+    setDatabase(filePath, "numbersDoc")
 
 
 class MyFirstGUI:
@@ -78,16 +97,22 @@ root.geometry('%dx%d+%d+%d' % (w, h, x, y))
 left = Label(root, text="Sent Order E-mail List", bg = "green", width="20")
 left.bind("<Button-1>", email)
 left.pack(side = LEFT, fill=Y)
-right = Label(root, text="Receive Parts", bg = "blue", width="20")
-right.bind("<Button-1>", receive)
+right = Label(root, text="Generate Export Files", bg = "blue", width="20")
+right.bind("<Button-1>", csvExport)
 right.pack(side = RIGHT, fill=Y)
 
 
 #order = Button(topFrame, text = "SEND ORDER E-MAIL LIST", bg = "blue", command = email)
 
-
-setup = Button(bottomFrame, text = "Setup Directory", bg = "red", command = handle_file)
+Set_dir = set_dir()
+root = Button(bottomFrame, text = "Select Root", bg = "red", command =Set_dir.root)
+root.pack(side = BOTTOM)
+setup = Button(bottomFrame, text = "Select Results Folder", bg = "red", command = Set_dir.results)
 setup.pack(side = BOTTOM)
+data = Button(bottomFrame, text = "Select Database", command = browse)
+data.pack(side = BOTTOM)
+
+
 
 #order.pack()
 #receive.pack()

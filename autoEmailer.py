@@ -19,7 +19,8 @@ import time
 from email.mime.text import MIMEText
 from email.MIMEMultipart import MIMEMultipart
 
-
+var = "allen.wickhamiii@gmail.com"
+rec = "Agw-25035711!@"
 
 #----------------------------------------# 
 # 			   Email Script				 #
@@ -38,7 +39,7 @@ def send(body):
 	 
 	server = smtplib.SMTP('smtp.gmail.com', 587)
 	server.starttls()
-	server.login("allen.wickhamiii@gmail.com", "Kap-5711")
+	server.login(var, rec)
 	text = msg.as_string()
 	server.sendmail(fromaddr, toaddr, text)
 	server.quit()
