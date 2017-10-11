@@ -28,7 +28,7 @@ rec = "password"
 def send(body):
 	print("Sending Email...")
 	fromaddr = "Project Inventory"
-	toaddr = "allen.wickhamiii@gmail.com"
+	toaddr = "username"
 	msg = MIMEMultipart()
 	msg['From'] = fromaddr
 	msg['To'] = toaddr
