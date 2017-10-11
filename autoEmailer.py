@@ -27,16 +27,10 @@ rec = "passphrase"
 #----------------------------------------#
 def send(body):
 	print("Sending Email...")
-<<<<<<< HEAD
+
 	fromaddr = "Part Order List"
 	toaddr = "To addr"
-=======
-	fromaddr = "Project Inventory"
-	toaddr = "username"
-<<<<<<< HEAD
->>>>>>> branch
-=======
->>>>>>> branch
+
 	msg = MIMEMultipart()
 	msg['From'] = fromaddr
 	msg['To'] = toaddr
