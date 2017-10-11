@@ -15,9 +15,8 @@ echo			# what they are doing
 echo "Please Wait...+"
 echo
 
-
-
 cd ~/Desktop/projectInventory_working
+
 #--old script
 #osascript SpreadsheetExportToCSV.scpt parts.numbers /Users/Allen/Desktop/Current\ Work/CODE/projectInventory_working/results
 

@@ -22,6 +22,7 @@ from email.MIMEMultipart import MIMEMultipart
 var = "username"
 rec = "passphrase"
 
+
 #----------------------------------------# 
 # 			   Email Script				 #
 #----------------------------------------#
