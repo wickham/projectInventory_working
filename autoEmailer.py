@@ -20,11 +20,7 @@ from email.mime.text import MIMEText
 from email.MIMEMultipart import MIMEMultipart
 
 var = "username"
-<<<<<<< HEAD
 rec = "passphrase"
-=======
-rec = "password"
->>>>>>> branch
 
 #----------------------------------------# 
 # 			   Email Script				 #
@@ -37,6 +33,9 @@ def send(body):
 =======
 	fromaddr = "Project Inventory"
 	toaddr = "username"
+<<<<<<< HEAD
+>>>>>>> branch
+=======
 >>>>>>> branch
 	msg = MIMEMultipart()
 	msg['From'] = fromaddr

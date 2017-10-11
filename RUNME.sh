@@ -15,9 +15,14 @@ echo			# what they are doing
 echo "Please Wait...+"
 echo
 
+<<<<<<< HEAD:RUNME.sh
 
 cd ~/Desktop/projectInventory_working
 
+=======
+cd /Users/Allen/Current\ Work/CODE/projectInventory_working/
+#--old script
+>>>>>>> branch:command.sh
 #osascript SpreadsheetExportToCSV.scpt parts.numbers /Users/Allen/Desktop/Current\ Work/CODE/projectInventory_working/results
 
 echo
