@@ -3,10 +3,14 @@
 A simple, yet powerful program used to manage inventory movements to help understand the frequency of orders and organize the process as a whole.
 
 
-RUNNING
+HOW TO RUN PROGRAM
+
 -emailer is disabled but displays in terminal (you can enable it in projectTory.py)
 -exctact "projectInventory_working" to user desktop
--run "RUNME.sh"
+-run "RUNME.sh" by dragging into terminal window and pressing "return"*
+	*if program fails to run, type:
+									chmod 777
+		then drag "RUNME.sh" into window (space between "777" and "RUNME.sh")
 
 Debugger: FINISHED
 -Verbose mode is a tool used to display all data being imported by the writer
