@@ -105,11 +105,11 @@ right.pack(side = RIGHT, fill=Y)
 #order = Button(topFrame, text = "SEND ORDER E-MAIL LIST", bg = "blue", command = email)
 
 Set_dir = set_dir()
-root = Button(bottomFrame, text = "Select Root", bg = "red", command =Set_dir.root)
+root = Button(bottomFrame, text = "Select App Directory", bg = "red", command =Set_dir.root)
 root.pack(side = BOTTOM)
-setup = Button(bottomFrame, text = "Select Results Folder", bg = "red", command = Set_dir.results)
+setup = Button(bottomFrame, text = "Select .csv Folder", bg = "red", command = Set_dir.results)
 setup.pack(side = BOTTOM)
-data = Button(bottomFrame, text = "Select Database", command = browse)
+data = Button(bottomFrame, text = "Select Database.numbers", command = browse)
 data.pack(side = BOTTOM)
 
 

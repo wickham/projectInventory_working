@@ -23,8 +23,10 @@ Debugger: FINISHED
 [DONE]					-Add new files by adding to "export_file" 
 							(multiple files)
 
-[NEEDS]					-Encrypt password to protect user info (using 
+[NEEDS]					-Encrypt password to protect email user info (using 
 							hashing bcrypt salts)
+
+[NEEDS]                 -Tool to setup emailer tool (username and passphrase)
 
 
 *Receive Parts: 
