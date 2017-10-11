@@ -22,6 +22,7 @@ from email.MIMEMultipart import MIMEMultipart
 var = "username"
 rec = "passphrase"
 
+
 #----------------------------------------# 
 # 			   Email Script				 #
 #----------------------------------------#
@@ -30,7 +31,7 @@ def send(body):
 
 	fromaddr = "Part Order List"
 	toaddr = "To addr"
-    
+
 	msg = MIMEMultipart()
 	msg['From'] = fromaddr
 	msg['To'] = toaddr
