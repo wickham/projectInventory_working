@@ -19,8 +19,8 @@ import time
 from email.mime.text import MIMEText
 from email.MIMEMultipart import MIMEMultipart
 
-var = "allen.wickhamiii@gmail.com"
-rec = "Agw-25035711!@"
+var = "username"
+rec = "password"
 
 #----------------------------------------# 
 # 			   Email Script				 #
