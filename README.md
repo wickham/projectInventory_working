@@ -1,8 +1,12 @@
 # projectInventory_working
 
-A simple, yet powerful program used to manage inventory movements to help understand the frequency of orders and organize the
-process as a whole.
+A simple, yet powerful program used to manage inventory movements to help understand the frequency of orders and organize the process as a whole.
 
+
+RUNNING
+-emailer is disabled but displays in terminal (you can enable it in projectTory.py)
+-exctact "projectInventory_working" to user desktop
+-run "RUNME.sh"
 
 Debugger: FINISHED
 -Verbose mode is a tool used to display all data being imported by the writer

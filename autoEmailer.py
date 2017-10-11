@@ -19,16 +19,16 @@ import time
 from email.mime.text import MIMEText
 from email.MIMEMultipart import MIMEMultipart
 
-var = "allen.wickhamiii@gmail.com"
-rec = "Agw-25035711!@"
+var = "username"
+rec = "passphrase"
 
 #----------------------------------------# 
 # 			   Email Script				 #
 #----------------------------------------#
 def send(body):
 	print("Sending Email...")
-	fromaddr = "Project Inventory"
-	toaddr = "allen.wickhamiii@gmail.com"
+	fromaddr = "Part Order List"
+	toaddr = "To addr"
 	msg = MIMEMultipart()
 	msg['From'] = fromaddr
 	msg['To'] = toaddr

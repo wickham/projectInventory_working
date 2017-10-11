@@ -35,20 +35,25 @@ from nodes import orderlists
 # EX:                                                               #
 #       export_file = ["my-file1.csv","my-file2.csv","NULL"]        #                                                                    
 #####################################################################
+def cd(path):
+    os.chdir(os.path.expanduser(path))
+
 def config():
+    cd("~/Desktop/projectInventory_working")
+    wkdir=os.getcwd()
     export_file = shelve.open("mydata")
 
     export_file = ["iPhone Parts-Table 1.csv", "iPhone Repair Tools-Table 1.csv", "NULL"]
-    diR = "/Users/Allen/Current Work/CODE/projectInventory_working/results"
+    diR = wkdir+"/results"
     return (export_file, diR)
 
 def automator():
     #os.system("/Users/Allen/Desktop/Current\ Work/CODE/projectInventory_working/SpreadsheetExportToCSV.scpt")
-    os.chdir("/Users/Allen/Current Work/CODE/projectInventory_working")
+    cd("~/Desktop/projectInventory_working")
     wkdir=os.getcwd()
     print(wkdir)
-    subprocess.call(["cd","/Users/Allen/Current Work/CODE/projectInventory_working"])
-    subprocess.call(["osascript","SpreadsheetExportToCSV.scpt", "/Users/Allen/Current Work/CODE/projectInventory_working/templates/parts.numbers","/Users/Allen/Current Work/CODE/projectInventory_working/results"])
+    subprocess.call(["cd",wkdir])
+    subprocess.call(["osascript","SpreadsheetExportToCSV.scpt", wkdir+"/templates/parts.numbers",wkdir+"results"])
 
 ######################################################################################
 

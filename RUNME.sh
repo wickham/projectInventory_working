@@ -15,15 +15,16 @@ echo			# what they are doing
 echo "Please Wait...+"
 echo
 
-cd /Users/Allen/Desktop/Current\ Work/CODE/projectInventory_working
-osascript SpreadsheetExportToCSV.scpt parts.numbers /Users/Allen/Desktop/Current\ Work/CODE/projectInventory_working/results
+cd ~/Desktop/projectInventory_working
+#-- old script
+#osascript SpreadsheetExportToCSV.scpt parts.numbers /Users/Allen/Desktop/Current\ Work/CODE/projectInventory_working/results
 
 echo
 echo
 echo "Okay, you have the controls again"
 echo "Press any key to initialize program:"
 read -n 1
-python projectTory.py
+python gui.py
 echo
 echo "Press any key to exit:"
 read -n 1 -s
